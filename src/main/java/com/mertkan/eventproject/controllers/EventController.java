@@ -102,7 +102,6 @@ public class EventController {
         artist.setId(id);
         artistService.save(artist);
     }
-
     @DeleteMapping(path = "/artists/{id}")
     public void deleteArtist(@PathVariable Long id) {
         artistService.delete(id);
