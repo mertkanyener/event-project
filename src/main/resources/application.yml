@@ -1,0 +1,43 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
+    username: mertkan
+    password: lachocalad11
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+security:
+  oauth2:
+    client:
+      client-id: mert
+      client-secret: mert_secret
+      scope: read,write,trust
+      auto-approve-scopes: '.*'
+      resource:
+        filter-order: 3
+
+facebook:
+  client:
+    clientId: 233668646673605
+    clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+
+
+logging:
+  pattern:
+    console:
+      file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+  level:
+    org.hibernate: debug
+    org.springframework.web: warn
+

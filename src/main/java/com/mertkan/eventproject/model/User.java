@@ -18,9 +18,9 @@ public class User implements UserDetails {
     @SequenceGenerator(sequenceName = "user_seq", initialValue = 2, allocationSize = 1, name = "USER_SEQ")
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = false)
     private String username;
     @Column(name = "password", nullable = false)
     private String password;
