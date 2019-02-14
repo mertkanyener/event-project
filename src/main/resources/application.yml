@@ -26,9 +26,9 @@ security:
 
 logging:
   pattern:
-    console:
-      file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
   level:
-    org.hibernate: debug
+    org.hibernate: warn
     org.springframework.web: warn
-
+    org.springframework.security: warn
