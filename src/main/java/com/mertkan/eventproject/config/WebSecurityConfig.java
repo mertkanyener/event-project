@@ -44,11 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Autowired
-    @Qualifier("oauth2ClientContext")
-    OAuth2ClientContext oAuth2ClientContext;
-
-
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -69,45 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login**").permitAll();
-                //.anyRequest().authenticated()
-                //.and().addFilterAfter(ssoFilter(), BasicAuthenticationFilter.class );
     }
 
-//    @Bean
-//    public FilterRegistrationBean<OAuth2ClientContextFilter> oAuth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
-//        FilterRegistrationBean<OAuth2ClientContextFilter> registration =
-//                new FilterRegistrationBean<OAuth2ClientContextFilter>();
-//        registration.setFilter(filter);
-//        registration.setOrder(-100);
-//        return registration;
-//    }
-//
-//    @Bean
-//    @ConfigurationProperties("facebook")
-//    public ClientResources facebook() {
-//        return new ClientResources();
-//    }
-//
-//    private javax.servlet.Filter ssoFilter() {
-//        CompositeFilter filter = new CompositeFilter();
-//        List<javax.servlet.Filter> filters = new ArrayList<>();
-//        filters.add(ssoFilter(facebook(), "/login/facebook"));
-//        filter.setFilters(filters);
-//        return filter;
-//    }
-//
-//    private Filter ssoFilter(ClientResources client, String path) {
-//        OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(
-//                path
-//        );
-//        OAuth2RestTemplate template = new OAuth2RestTemplate(client.getClient(), oAuth2ClientContext);
-//        filter.setRestTemplate(template);
-//        UserInfoTokenServices tokenServices = new UserInfoTokenServices(
-//                client.getResource().getUserInfoUri(), client.getClient().getClientId());
-//        tokenServices.setRestTemplate(template);
-//        filter.setTokenServices(tokenServices);
-//        return filter;
-//    }
 
 
 
