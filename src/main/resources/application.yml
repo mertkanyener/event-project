@@ -2,10 +2,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    generate-ddl: true
   datasource:
-    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-    username: mertkan
+    url: jdbc:mysql://localhost:3306/mertdev01?useSSL=false
+    username: root
     password: lachocalad11
     driver-class-name: com.mysql.jdbc.Driver
 
@@ -13,31 +12,23 @@ spring:
 security:
   oauth2:
     client:
-      client-id: mert
-      client-secret: mert_secret
-      scope: read,write,trust
-      auto-approve-scopes: '.*'
-      resource:
-        filter-order: 3
-
-facebook:
-  client:
-    clientId: 233668646673605
-    clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
-    accessTokenUri: https://graph.facebook.com/oauth/access_token
-    userAuthorizationUri: https://www.facebook.com/dialog/oauth
-    tokenName: oauth_token
-    authenticationScheme: query
-    clientAuthenticationScheme: form
-  resource:
-    userInfoUri: https://graph.facebook.com/me
-
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      access-token-uri: https://graph.facebook.com/oauth/access_token
+      user-authorization-uri: https://www.facebook.com/dialog/oauth
+      client-secret: 7c2cfc030acf8551641f65c2531ab0c3
+      client-id: 647358105696445
+    resource:
+      userInfoUri: https://graph.facebook.com/me
 
 logging:
   pattern:
     console:
       file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
   level:
-    org.hibernate: debug
+    org.hibernate: warn
     org.springframework.web: warn
+    org.springframework.security: warn
+    com.mertkan.eventproject.controllers : warn
 
