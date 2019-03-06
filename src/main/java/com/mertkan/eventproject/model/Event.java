@@ -1,22 +1,38 @@
 package com.mertkan.eventproject.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "event")
 public class Event {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "date")
-    private Date date;
-    @Column(name = "venueId")
-    private Long venueId;
-    @Column(name = "artistId")
-    private Long artistId;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
+    @Column(name = "time", nullable = false)
+    private LocalTime time;
+    @ManyToOne
+    @JoinColumn(name = "venue_id", nullable = false)
+    private Venue venue;
+    @ManyToMany(mappedBy = "artist_event")
+    private List<Artist> artists;
+    @Column(name = "webLink")
+    private String webLink;
+
+    public String getWebLink() {
+        return webLink;
+    }
+
+    public void setWebLink(String webLink) {
+        this.webLink = webLink;
+    }
 
     public Long getId() {
         return id;
@@ -34,27 +50,35 @@ public class Event {
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Long getVenueId() {
-        return venueId;
+    public Venue getVenue() {
+        return venue;
     }
 
-    public void setVenueId(Long venueId) {
-        this.venueId = venueId;
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
-    public Long getArtistId() {
-        return artistId;
+    public List<Artist> getArtists() {
+        return artists;
     }
 
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
     }
 }
