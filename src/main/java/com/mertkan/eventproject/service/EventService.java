@@ -11,6 +11,5 @@ public interface EventService {
     void update(Event event);
     List<Event> getAll();
     List<Event> findByVenueId(Long venueId);
-    List<Event> findByArtistId(Long artistId);
     Event findByEventId(Long id);
 }

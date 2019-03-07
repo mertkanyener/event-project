@@ -4,10 +4,10 @@ spring:
       ddl-auto: create
     generate-ddl: true
   datasource:
+    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
     url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-    #url: jdbc:mysql://localhost:3306/mertdev01?useSSL=false
-    username: mertkan
-    #username: root
+    #username: mertkan
+    username: root
     password: lachocalad11
     driver-class-name: com.mysql.jdbc.Driver
 

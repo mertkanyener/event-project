@@ -19,8 +19,6 @@ public class Venue {
     private Double latitude;
     @Column(name = "longitude", nullable = false)
     private Double longitude;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
-    private List<Event> events;
 
     public Long getId() {
         return id;
@@ -62,11 +60,4 @@ public class Venue {
         this.id = id;
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 }

@@ -40,11 +40,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findByArtistId(Long artistId) {
-        return eventRepository.findByArtistId(artistId);
-    }
-
-    @Override
     public Event findByEventId(Long id) {
         return eventRepository.findByEventId(id);
     }
