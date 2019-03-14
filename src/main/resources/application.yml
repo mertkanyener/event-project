@@ -1,4 +1,10 @@
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 50MB
+      max-request-size: 100MB
   jpa:
     hibernate:
       ddl-auto: create
@@ -42,6 +48,10 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
   level:
-    org.hibernate: warn
-    org.springframework.web: warn
+    org.hibernate: debug
+    org.springframework.web: debug
     org.springframework.security: warn
+
+file:
+  upload-dir: C:/DEV/dinomiko/images
+
