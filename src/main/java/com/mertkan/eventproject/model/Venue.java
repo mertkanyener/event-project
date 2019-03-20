@@ -18,6 +18,10 @@ public class Venue {
     private Double latitude;
     @Column(name = "longitude", nullable = false)
     private Double longitude;
+    @Column(name = "image")
+    private String image;
+    @Column(name = "alt_images")
+    private String[] altImages;
 
     public Long getId() {
         return id;
@@ -59,4 +63,19 @@ public class Venue {
         this.id = id;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String[] getAltImages() {
+        return altImages;
+    }
+
+    public void setAltImages(String[] altImages) {
+        this.altImages = altImages;
+    }
 }

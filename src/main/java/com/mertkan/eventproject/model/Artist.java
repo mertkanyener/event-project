@@ -9,8 +9,12 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "image")
+    private String image;
+    @Column(name = "alt_images")
+    private String[] altImages;
 
     public Long getId() {
         return id;
@@ -28,4 +32,19 @@ public class Artist {
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String[] getAltImages() {
+        return altImages;
+    }
+
+    public void setAltImages(String[] altImages) {
+        this.altImages = altImages;
+    }
 }
