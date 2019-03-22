@@ -53,5 +53,6 @@ logging:
     org.springframework.security: warn
 
 file:
-  upload-dir: C:/DEV/dinomiko/images
-
+  artist-upload-dir: C:/DEV/dinomiko/images/artists
+  event-upload-dir: C:/DEV/dinomiko/images/events
+  venue-upload-dir: C:/DEV/dinomiko/images/venues
