@@ -17,6 +17,16 @@ spring:
     password: lachocalad11
     driver-class-name: com.mysql.jdbc.Driver
 
+security:
+  oauth2:
+    client:
+      client-id: admin-client
+      client-secret: mert-secret
+      access-token-uri: http://localhost:8080/oauth/token
+
+
+
+
 #
 #security:
 #  oauth2:

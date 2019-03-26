@@ -18,7 +18,7 @@ public class LoginController {
     private final String clientSecret = "7c2cfc030acf8551641f65c2531ab0c3";
     private final String redirectUri = "http://localhost:4200/";
 
-    @GetMapping(path = "/login")
+    @GetMapping(path = "/facebook")
     public ResponseEntity<String> facebookLogin(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception{
 
         String url = "https://graph.facebook.com/v3.2/oauth/access_token?client_id="+ this.clientId
@@ -50,5 +50,8 @@ public class LoginController {
         return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
 
     }
+
+
+
 
 }
