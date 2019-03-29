@@ -3,10 +3,7 @@ package com.mertkan.eventproject.controllers;
 import com.mertkan.eventproject.impl.FileStorageService;
 import com.mertkan.eventproject.payload.UploadFileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
@@ -14,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(path = "/admin")
 public class FileController {
 
     @Autowired
@@ -45,9 +43,4 @@ public class FileController {
                 .map(file -> uploadFile(file, type))
                 .collect(Collectors.toList());
     }
-
-
-
-
-
 }
