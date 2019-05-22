@@ -12,4 +12,5 @@ public interface EventService {
     List<Event> getAll();
     List<Event> findByVenueId(Long venueId);
     Event findByEventId(Long id);
+    List<Event> findByArtists_Id(Long id);
 }

@@ -43,4 +43,7 @@ public class EventServiceImpl implements EventService {
     public Event findByEventId(Long id) {
         return eventRepository.findByEventId(id);
     }
+
+    @Override
+    public List<Event> findByArtists_Id(Long id) { return eventRepository.findByArtists_Id(id); }
 }

@@ -13,5 +13,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Event findByEventId(@Param("id") Long id);
     @Query("select event from Event event where event.venue= :venueId")
     List<Event> findByVenueId(@Param("venueId") Long venueId);
+    List<Event> findByArtists_Id(Long id);
+
 
 }

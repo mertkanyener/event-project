@@ -63,7 +63,7 @@ public class EventController {
         return artistService.findByArtistId(id);
     }
 
-
-
+    @GetMapping(path = "/artists/{id}/events")
+    public List<Event> getEventsByArtist(@PathVariable Long id) { return eventService.findByArtists_Id(id); }
 
 }
