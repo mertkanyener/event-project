@@ -21,7 +21,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "venue_id", nullable = false)
     private Venue venue;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "event_artist", joinColumns =
     @JoinColumn(name = "event_id"), inverseJoinColumns =
     @JoinColumn(name = "artist_id"))

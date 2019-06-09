@@ -58,11 +58,13 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
   level:
-    org.hibernate: debug
-    org.springframework.web: debug
+    org.hibernate: warn
+    org.springframework.web: warn
     org.springframework.security: warn
 
 file:
   artist-upload-dir: C:/DEV/dinomiko/images/artists
   event-upload-dir: C:/DEV/dinomiko/images/events
   venue-upload-dir: C:/DEV/dinomiko/images/venues
+server:
+  port: 6060
