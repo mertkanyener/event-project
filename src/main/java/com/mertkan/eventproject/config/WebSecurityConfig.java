@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/events**", "/artists/**",
-                            "/venues**", "/facebook**",
+                    .antMatchers("/events/**", "/artists/**",
+                            "/venues/**", "/facebook/**",
                             "/oauth/token").permitAll()
 
                 .and().csrf().disable()

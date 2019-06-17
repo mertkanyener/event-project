@@ -36,6 +36,9 @@ public class EventController {
         return eventService.findByEventId(id);
     }
 
+    @GetMapping(path = "/events/now")
+    public List<Event> getEventsThisMonth() { return eventService.findTillEndOfMonth(); }
+
 
     // venue mappings
 
