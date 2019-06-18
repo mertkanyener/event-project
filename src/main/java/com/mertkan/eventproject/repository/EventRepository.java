@@ -13,13 +13,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("select event from Event event where event.id= :id")
     Event findByEventId(@Param("id") Long id);
-    @Query("select event from Event event where event.date between current_date and :monthEnd")
+    @Query("select event from Event event where event.date between current_date and :monthEnd order by date asc")
     List<Event> findTillEndOfMonth(@Param("monthEnd")LocalDate monthEnd);
-    @Query("select event from Event event where event.date between :montStart and :monthEnd")
+    @Query("select event from Event event where event.date between :monthStart and :monthEnd")
     List<Event> findByMonth(@Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
     @Query("select event from Event event where event.venue= :venueId")
     List<Event> findByVenueId(@Param("venueId") Long venueId);
     List<Event> findByArtists_Id(Long id);
-
 
 }
