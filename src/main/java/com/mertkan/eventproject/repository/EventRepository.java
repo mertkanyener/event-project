@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
+    @Query("select event from  Event event order by date asc")
+    List<Event> getAll();
     @Query("select event from Event event where event.id= :id")
     Event findByEventId(@Param("id") Long id);
     @Query("select event from Event event where event.date between current_date and :monthEnd order by date asc")
