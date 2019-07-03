@@ -57,7 +57,7 @@ public class EventController {
     }
 
     @GetMapping(path = "/venues/{id}/soon")
-    public Page<Event> getTop3EventsByVenue(@PathVariable Integer id) { return eventService.findTop3EventsByVenueId(id); }
+    public Page<Event> getTop3EventsByVenue(@PathVariable Long id) { return eventService.findTop3EventsByVenueId(id); }
 
     // artist mappings
 
