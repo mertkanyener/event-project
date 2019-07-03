@@ -7,6 +7,7 @@ import com.mertkan.eventproject.service.ArtistService;
 import com.mertkan.eventproject.service.EventService;
 import com.mertkan.eventproject.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,12 +51,13 @@ public class EventController {
         return venueService.getAll();
     }
 
-
     @GetMapping(path = "/venues/{id}")
     public Venue getVenue(@PathVariable Long id) {
         return venueService.findByVenueId(id);
     }
 
+    @GetMapping(path = "/venues/{id}/soon")
+    public Page<Event> getTop3EventsByVenue(@PathVariable Integer id) { return eventService.findTop3EventsByVenueId(id); }
 
     // artist mappings
 

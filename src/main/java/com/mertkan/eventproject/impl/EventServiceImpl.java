@@ -7,6 +7,9 @@ import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -79,5 +82,11 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByMonth(monthStart, monthEnd);
 
     }
+
+    @Override
+    public Page<Event> findTop3EventsByVenueId(Long venueId) {
+        return eventRepository.findTop3EventsByVenueId(venueId, PageRequest.of(0, 3));
+    }
+
 
 }

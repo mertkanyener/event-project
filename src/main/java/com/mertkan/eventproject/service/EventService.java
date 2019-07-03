@@ -1,8 +1,8 @@
 package com.mertkan.eventproject.service;
 
 import com.mertkan.eventproject.model.Event;
+import org.springframework.data.domain.Page;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface EventService {
@@ -16,4 +16,6 @@ public interface EventService {
     List<Event> findByArtists_Id(Long id);
     List<Event> findTillEndOfMonth();
     List<Event> findByMonth(Integer month);
+    Page<Event> findTop3EventsByVenueId(Long venueId);
+
 }

@@ -1,6 +1,8 @@
 package com.mertkan.eventproject.repository;
 
 import com.mertkan.eventproject.model.Event;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,8 +21,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findTillEndOfMonth(@Param("monthEnd")LocalDate monthEnd);
     @Query("select event from Event event where event.date between :monthStart and :monthEnd order by date asc")
     List<Event> findByMonth(@Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
-    @Query("select event from Event event where event.venue= :venueId")
+    @Query("select event from Event event where event.venue= :venueId order by date asc")
     List<Event> findByVenueId(@Param("venueId") Long venueId);
+    @Query("select event from Event event where event.venue= :venueId order by date asc")
+    Page<Event> findTop3EventsByVenueId(@Param("venueId") Long venueId, Pageable pageable);
     List<Event> findByArtists_Id(Long id);
 
 }
