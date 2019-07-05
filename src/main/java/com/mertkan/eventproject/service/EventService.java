@@ -17,5 +17,6 @@ public interface EventService {
     List<Event> findTillEndOfMonth();
     List<Event> findByMonth(Integer month);
     Page<Event> findTop3EventsByVenueId(Long venueId);
+    Page<Event> findTop3EventsByArtist(Long artistId);
 
 }

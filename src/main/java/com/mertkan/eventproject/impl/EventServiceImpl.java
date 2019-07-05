@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -52,7 +54,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findByArtists_Id(Long id) { return eventRepository.findByArtists_Id(id); }
+    public List<Event> findByArtists_Id(Long id) {
+        List<Event> events = eventRepository.findByArtists_Id(id);
+        events.sort(Comparator.comparing(Event::getDate));
+        return events;
+    }
 
     @Override
     public List<Event> findTillEndOfMonth() {
@@ -87,6 +93,12 @@ public class EventServiceImpl implements EventService {
     public Page<Event> findTop3EventsByVenueId(Long venueId) {
         return eventRepository.findTop3EventsByVenueId(venueId, PageRequest.of(0, 3));
     }
+
+    @Override
+    public Page<Event> findTop3EventsByArtist(Long artistId) {
+        return eventRepository.findByArtists_Id(artistId, PageRequest.of(0, 3, Sort.by("date").ascending()));
+    }
+
 
 
 }
