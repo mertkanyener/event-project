@@ -4,8 +4,6 @@ import com.mertkan.eventproject.model.Venue;
 import com.mertkan.eventproject.repository.VenueRepository;
 import com.mertkan.eventproject.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,10 +36,5 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue findByVenueId(Long id) {
         return venueRepository.fingByVenueId(id);
-    }
-
-    @Override
-    public Page<Venue> getVenues(Integer page, Integer size) {
-        return venueRepository.getVenues(PageRequest.of(page, size));
     }
 }

@@ -3,16 +3,20 @@ package com.mertkan.eventproject.service;
 import com.mertkan.eventproject.model.Event;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface EventService {
 
     void save(Event event);
     void delete(Long id);
     void update(Event event);
-    Page<Event> getAll(Integer page, Integer size);
-    Page<Event> findByVenueId(Long venueId, Integer page, Integer size);
+    List<Event> getAll();
+    List<Event> findByVenueId(Long venueId);
     Event findByEventId(Long id);
-    Page<Event> findByArtists_Id(Long id, Integer page, Integer size);
-    Page<Event> findTillEndOfMonth(Integer page, Integer size);
-    Page<Event> findByMonth(Integer month, Integer page, Integer size);
+    List<Event> findByArtists_Id(Long id);
+    List<Event> findTillEndOfMonth();
+    List<Event> findByMonth(Integer month);
+    Page<Event> findTop3EventsByVenueId(Long venueId);
+    Page<Event> findTop3EventsByArtist(Long artistId);
 
 }

@@ -3,11 +3,13 @@ package com.mertkan.eventproject.impl;
 import com.mertkan.eventproject.model.Event;
 import com.mertkan.eventproject.repository.EventRepository;
 import com.mertkan.eventproject.service.EventService;
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +39,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Page<Event> getAll(Integer page, Integer size) {
-        return eventRepository.getAll(PageRequest.of(page, size));
+    public List<Event> getAll() {
+        return eventRepository.getAll();
     }
 
     @Override
-    public Page<Event> findByVenueId(Long venueId, Integer page, Integer size) {
-        return eventRepository.findByVenueId(venueId, PageRequest.of(page, size));
+    public List<Event> findByVenueId(Long venueId) {
+        return eventRepository.findByVenueId(venueId);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Page<Event> findByArtists_Id(Long id) {
+    public List<Event> findByArtists_Id(Long id) {
         List<Event> events = eventRepository.findByArtists_Id(id);
         events.sort(Comparator.comparing(Event::getDate));
         return events;

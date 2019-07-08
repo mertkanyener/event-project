@@ -59,11 +59,6 @@ public class EventController {
     @GetMapping(path = "/venues/{id}/soon")
     public Page<Event> getTop3EventsByVenue(@PathVariable Long id) { return eventService.findTop3EventsByVenueId(id); }
 
-    @GetMapping(path = "/venues/page/{page}/size/{size}")
-    public Page<Venue> getVenues(@PathVariable Integer page, @PathVariable Integer size) {
-        return venueService.getVenues(page, size);
-    }
-
     // artist mappings
 
     @GetMapping(path = "/artists")
@@ -82,8 +77,4 @@ public class EventController {
     @GetMapping(path = "/artists/{id}/events/soon")
     public Page<Event> getSoonEventsByArtist(@PathVariable Long id) { return eventService.findTop3EventsByArtist(id); }
 
-    @GetMapping(path = "/artists/page/{page}/size/{size}")
-    public Page<Artist> getArtistPage(@PathVariable Integer page, @PathVariable Integer size) {
-        return artistService.getArtistsPage(page, size);
-    }
 }

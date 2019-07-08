@@ -1,7 +1,6 @@
 package com.mertkan.eventproject.service;
 
 import com.mertkan.eventproject.model.Venue;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -12,6 +11,5 @@ public interface VenueService {
     void update(Venue venue);
     Venue findByVenueId(Long id);
     List<Venue> getAll();
-    Page<Venue> getVenues(Integer page, Integer size);
 
 }
