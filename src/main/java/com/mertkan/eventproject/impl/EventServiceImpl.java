@@ -3,25 +3,23 @@ package com.mertkan.eventproject.impl;
 import com.mertkan.eventproject.model.Event;
 import com.mertkan.eventproject.repository.EventRepository;
 import com.mertkan.eventproject.service.EventService;
-import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
 
 @Service
 public class EventServiceImpl implements EventService {
 
-    @Autowired
-    EventRepository eventRepository;
+    private final EventRepository eventRepository;
+
+    public EventServiceImpl(final EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
 
     @Override
     public void save(Event event) {
@@ -39,13 +37,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAll() {
-        return eventRepository.getAll();
+    public Page<Event> getAll(Integer page, Integer size) {
+
+        return eventRepository.getAll(PageRequest.of(page, size));
     }
 
     @Override
-    public List<Event> findByVenueId(Long venueId) {
-        return eventRepository.findByVenueId(venueId);
+    public Page<Event> findByVenueId(Long venueId, Integer page, Integer size) {
+        return eventRepository.findByVenueId(venueId, PageRequest.of(page, size));
     }
 
     @Override
@@ -54,14 +53,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findByArtists_Id(Long id) {
-        List<Event> events = eventRepository.findByArtists_Id(id);
-        events.sort(Comparator.comparing(Event::getDate));
-        return events;
+    public Page<Event> findByArtists_Id(Long id, Integer page, Integer size) {
+        return eventRepository.findByArtists_Id(id, PageRequest.of(page, size));
     }
 
     @Override
-    public List<Event> findTillEndOfMonth() {
+    public Page<Event> findTillEndOfMonth(Integer page, Integer size) {
 
         LocalDate now = LocalDate.now();
         LocalDate monthEnd = now.withDayOfMonth(now.lengthOfMonth());
@@ -71,11 +68,11 @@ public class EventServiceImpl implements EventService {
         logger.info("Current date: " + now);
         logger.info("End of the month: " + monthEnd);
 
-        return eventRepository.findTillEndOfMonth(monthEnd);
+        return eventRepository.findTillEndOfMonth(monthEnd, PageRequest.of(page, size));
     }
 
     @Override
-    public List<Event> findByMonth(Integer month) {
+    public Page<Event> findByMonth(Integer month, Integer page, Integer size) {
 
         LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
@@ -85,20 +82,29 @@ public class EventServiceImpl implements EventService {
         logger.info("Month Start: " + monthStart);
         logger.info("Month End: " + monthEnd);
 
-        return eventRepository.findByMonth(monthStart, monthEnd);
+        return eventRepository.findByMonth(monthStart, monthEnd, PageRequest.of(page, size));
 
     }
 
     @Override
-    public Page<Event> findTop3EventsByVenueId(Long venueId) {
-        return eventRepository.findTop3EventsByVenueId(venueId, PageRequest.of(0, 3));
+    public Page<Event> findByDate(Integer day, Integer month, Integer year, Integer page, Integer size) {
+        LocalDate date = LocalDate.of(year, month, day);
+
+        Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
+
+        logger.info("Date: " + date);
+
+        return eventRepository.findByDate(date, PageRequest.of(page, size));
+
     }
 
     @Override
-    public Page<Event> findTop3EventsByArtist(Long artistId) {
-        return eventRepository.findByArtists_Id(artistId, PageRequest.of(0, 3, Sort.by("date").ascending()));
-    }
+    public Page<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year, Integer page, Integer size) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
+        return eventRepository.findByVenueIdAndMonth(monthStart, monthEnd, venueId, PageRequest.of(page, size));
+    }
 
 
 }

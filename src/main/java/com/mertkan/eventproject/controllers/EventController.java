@@ -1,35 +1,23 @@
 package com.mertkan.eventproject.controllers;
 
-import com.mertkan.eventproject.model.Artist;
 import com.mertkan.eventproject.model.Event;
-import com.mertkan.eventproject.model.Venue;
-import com.mertkan.eventproject.service.ArtistService;
 import com.mertkan.eventproject.service.EventService;
-import com.mertkan.eventproject.service.VenueService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class EventController {
 
-    @Autowired
-    EventService eventService;
+    private final EventService eventService;
 
-    @Autowired
-    VenueService venueService;
+    public EventController(final EventService eventService) {
+        this.eventService = eventService;
+    }
 
-    @Autowired
-    ArtistService artistService;
-
-    // event mappings
-
-
-    @GetMapping(path = "/events")
-    public List<Event> getAllEvents() {
-        return eventService.getAll();
+    @GetMapping(path = "/events/page/{page}/size/{size}")
+    public Page<Event> getAllEvents(@PathVariable Integer page, @PathVariable Integer size) {
+        return eventService.getAll(page, size);
     }
 
     @GetMapping(path = "/events/{id}")
@@ -37,44 +25,59 @@ public class EventController {
         return eventService.findByEventId(id);
     }
 
-    @GetMapping(path = "/events/now")
-    public List<Event> getEventsThisMonth() { return eventService.findTillEndOfMonth(); }
-
-    @GetMapping(path = "/events/month/{month}")
-    public List<Event> getEventsByMonth(@PathVariable Integer month) { return eventService.findByMonth(month); }
-
-
-    // venue mappings
-
-    @GetMapping(path = "/venues")
-    public List<Venue> getAllVenues() {
-        return venueService.getAll();
+    @GetMapping(path = "/events/now/page/{page}/size/{size}")
+    public Page<Event> getEventsThisMonth(@PathVariable Integer page, @PathVariable Integer size) {
+        return eventService.findTillEndOfMonth(page, size);
     }
 
-    @GetMapping(path = "/venues/{id}")
-    public Venue getVenue(@PathVariable Long id) {
-        return venueService.findByVenueId(id);
+    @GetMapping(path = "/events/month/{month}/page/{page}/size/{size}")
+    public Page<Event> getEventsByMonth(@PathVariable Integer month, @PathVariable Integer page, @PathVariable Integer size) {
+        return eventService.findByMonth(month, page, size);
     }
 
-    @GetMapping(path = "/venues/{id}/soon")
-    public Page<Event> getTop3EventsByVenue(@PathVariable Long id) { return eventService.findTop3EventsByVenueId(id); }
-
-    // artist mappings
-
-    @GetMapping(path = "/artists")
-    public List<Artist> getAllArtists() {
-         return artistService.getAll();
+    @GetMapping(path = "/events/venue/{id}/month/{month}/year/{year}/page/{page}/size/{size}")
+    public Page<Event> getEventsByVenueAndMonth(@PathVariable Integer page, @PathVariable Integer size,
+                                                @PathVariable Integer month, @PathVariable Long id,
+                                                @PathVariable Integer year) {
+        return eventService.findByVenueAndMonth(id, month, year, page, size);
     }
 
-    @GetMapping(path = "/artists/{id}")
-    public Artist getArtist(@PathVariable Long id) {
-        return artistService.findByArtistId(id);
+    @GetMapping(path = "/events/year/{year}/month/{month}/day/{day}/page/{page}/size/{size}")
+    public Page<Event> getEventsByDate(@PathVariable Integer year, @PathVariable Integer month,
+                                       @PathVariable Integer day, @PathVariable Integer page,
+                                       @PathVariable Integer size) {
+        return eventService.findByDate(year, month, day, page, size);
     }
 
-    @GetMapping(path = "/artists/{id}/events")
-    public List<Event> getEventsByArtist(@PathVariable Long id) { return eventService.findByArtists_Id(id); }
+    @GetMapping(path = "/events/venue/{id}/page/{page}/size/{size}")
+    public Page<Event> getEventsByVenue(@PathVariable Long id, @PathVariable Integer page, @PathVariable Integer size) {
+        return eventService.findByVenueId(id, page, size);
+    }
 
-    @GetMapping(path = "/artists/{id}/events/soon")
-    public Page<Event> getSoonEventsByArtist(@PathVariable Long id) { return eventService.findTop3EventsByArtist(id); }
+    @GetMapping(path = "/events/artist/{id}/page/{page}/size/{size}")
+    public Page<Event> getEventsByArtist(@PathVariable Long id, @PathVariable Integer page, @PathVariable Integer size) {
+        return eventService.findByArtists_Id(id, page, size);
+    }
+
+    // Admin methods
+
+    @PostMapping(path = "/admin/events")
+    public void saveEvent(@RequestBody Event event) {
+        eventService.save(event);
+    }
+
+
+    @PutMapping(path = "/admin/events/{id}")
+    public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        event.setId(id);
+        eventService.save(event);
+    }
+
+    @DeleteMapping(path = "/admin/events/{id}")
+    public void deleteEvent(@PathVariable Long id) {
+        eventService.delete(id);
+    }
+
+
 
 }

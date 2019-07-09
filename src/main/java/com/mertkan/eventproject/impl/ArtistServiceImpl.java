@@ -3,7 +3,6 @@ package com.mertkan.eventproject.impl;
 import com.mertkan.eventproject.model.Artist;
 import com.mertkan.eventproject.repository.ArtistRepository;
 import com.mertkan.eventproject.service.ArtistService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class ArtistServiceImpl implements ArtistService {
 
-    @Autowired
-    ArtistRepository artistRepository;
+    private final ArtistRepository artistRepository;
+
+    public ArtistServiceImpl(final ArtistRepository artistRepository) {
+        this.artistRepository = artistRepository;
+    }
 
     @Override
     public void save(Artist artist) {

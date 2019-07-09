@@ -4,6 +4,8 @@ import com.mertkan.eventproject.model.Venue;
 import com.mertkan.eventproject.repository.VenueRepository;
 import com.mertkan.eventproject.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +13,11 @@ import java.util.List;
 @Service
 public class VenueServiceImpl implements VenueService {
 
-    @Autowired
-    VenueRepository venueRepository;
+    private final VenueRepository venueRepository;
+
+    public VenueServiceImpl(final VenueRepository venueRepository) {
+        this.venueRepository = venueRepository;
+    }
 
     @Override
     public void save(Venue venue) {
@@ -36,5 +41,10 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue findByVenueId(Long id) {
         return venueRepository.fingByVenueId(id);
+    }
+
+    @Override
+    public Page<Venue> getVenuePage(Integer page, Integer size) {
+        return venueRepository.getVenuePage(PageRequest.of(page, size));
     }
 }
