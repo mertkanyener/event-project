@@ -34,10 +34,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                                       Pageable pageable);
     @Query("select event from Event event where event.date= :date order by time asc")
     Page<Event> findByDate(@Param("date") LocalDate date, Pageable pageable);
-    @Query("select event " +
-            "from Event event, event_artist ea " +
-            "where event_artist.artist_id= :artistId " +
-            "and event_artist.event_id = event.id order by date asc")
+    @Query("select event from Event event join event.artists artists where artists.id= :artistId order by event.date asc")
     Page<Event> findByArtists_Id(@Param("artistId") Long id, Pageable pageable);
 
 
