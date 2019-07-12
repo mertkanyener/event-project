@@ -27,6 +27,22 @@ INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (12,'Edis','http://localhost:9999/im
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (13,'Murat Boz','http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (14,'Teoman','http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (15,'MFÖ','http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (16, 'Serdar Ortaç', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (17, 'Hande Yener', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (18, 'Bengü', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (19, 'Aleyna Tilki', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (20, 'Murat Dalkılıç', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (21, 'Yıldız Tilbe', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (22, 'Hadise', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (23, 'Ben Fero', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (24, 'Duman', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (25, 'Adamlar', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (26, 'Büyük Ev Ablukada', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (27, 'Yüzyüzeyken Konuşuruz', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (28, 'Son Feci Bisiklet', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (29, 'Gaye Su Akyol', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (30, 'Demet Akalın', 'http://localhost:9999/images/artists/shiba.jpg');
+
 
 
 INSERT INTO VENUE (ID, NAME, ADDRESS, LATITUDE, LONGITUDE) VALUES (1, 'Harbiye Cemil Topuzlu Açık Hava Tiyatrosu', 'Nişantaşı, Harbiye Mahallesi, 34367 Şişli/İstanbul', 41.046053, 28.990041 );
