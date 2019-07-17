@@ -22,6 +22,8 @@ public class Venue {
     private String image;
     @Column(name = "alt_images")
     private String[] altImages;
+    @Column(name = "city")
+    private String city;
 
     public Long getId() {
         return id;
@@ -77,5 +79,13 @@ public class Venue {
 
     public void setAltImages(String[] altImages) {
         this.altImages = altImages;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

@@ -12,6 +12,8 @@
 -- INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (6, 'Manga', 'http://localhost:9999/images/artists/manga.jpg');
 
 
+--INSERT ARTISTS
+
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (1, 'Tarkan', 'http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (2, 'Sıla', 'http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (3, 'Kenan Doğulu', 'http://localhost:9999/images/artists/shiba.jpg');
@@ -44,10 +46,19 @@ INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (29, 'Gaye Su Akyol', 'http://localh
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (30, 'Demet Akalın', 'http://localhost:9999/images/artists/shiba.jpg');
 
 
+--INSERT VENUES
 
-INSERT INTO VENUE (ID, NAME, ADDRESS, LATITUDE, LONGITUDE) VALUES (1, 'Harbiye Cemil Topuzlu Açık Hava Tiyatrosu', 'Nişantaşı, Harbiye Mahallesi, 34367 Şişli/İstanbul', 41.046053, 28.990041 );
-INSERT INTO VENUE (ID, NAME, ADDRESS, LATITUDE, LONGITUDE) VALUES (2, 'Küçükçiftlik Park', 'Harbiye Mahallesi, Kadırgalar Yokuşu No:4, 34367 Maçka/İstanbul', 41.044681, 28.993117 );
-INSERT INTO VENUE (ID, NAME, ADDRESS, LATITUDE, LONGITUDE) VALUES (3, 'Zorlu PSM', 'Levazım Mah., Koru Sok. No:2, 34340 Beşiktaş/İstanbul', 41.066146, 29.017428 );
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (1, 'Harbiye Cemil Topuzlu Açık Hava Tiyatrosu', 'Nişantaşı, Harbiye Mahallesi, 34367 Şişli/İstanbul', 'istanbul', 41.046053, 28.990041 );
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (2, 'Küçükçiftlik Park', 'Harbiye Mahallesi, Kadırgalar Yokuşu No:4, 34367 Maçka/İstanbul', 'istanbul',  41.044681, 28.993117 );
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (3, 'Zorlu PSM', 'Levazım Mah., Koru Sok. No:2, 34340 Beşiktaş/İstanbul', 'istanbul', 41.066146, 29.017428 );
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (4, 'Babylon', 'Merkez, Silahşör Caddesi & Birahane Sokak Tarihi Bomonti Bira Fabrikası No:1, 34384 Şişli/İstanbul', 'istanbul', 41.058295, 28.979829);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (5, 'Volkswagen Arena', 'Huzur, Maslak Ayazağa Cd. 4/A, 34396 Sarıyer/İstanbul', 'istanbul', 41.108725, 29.007590);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (6, 'Life Park', 'Kazım Karabekir Paşa, Bahçeköy Cd. No:114, 34473 Sarıyer/İstanbul', 'istanbul', 41.167282, 29.000671)
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (7, 'IF Performance Hall Beşiktaş', 'Cihannüma, Hasfırın Cd. No:26, 34353 Beşiktaş/İstanbul', 'istanbul', 41.044063, 29.006439);
+
+
+--INSERT EVENTS
+
 INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (1, 'Tarkan', '2019-08-12', '20:00' , 1);
 INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (2, 'Sıla', '2019-08-12', '19:30' , 1);
 INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (3, 'Ceza', '2019-08-20', '20:30', 3);
@@ -65,6 +76,8 @@ INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (14, 'Tarkan', '2019-0
 INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (15, 'Tarkan', '2019-07-21', '20:00', 3);
 INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID) VALUES (16, 'Tarkan', '2019-06-30', '20:00', 2);
 
+
+--MAP EVENTS
 
 INSERT INTO EVENT_ARTIST (ARTIST_ID, EVENT_ID) VALUES (1, 1);
 INSERT INTO EVENT_ARTIST (ARTIST_ID, EVENT_ID) VALUES (2, 2);

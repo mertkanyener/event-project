@@ -47,4 +47,10 @@ public class VenueServiceImpl implements VenueService {
     public Page<Venue> getVenuePage(Integer page, Integer size) {
         return venueRepository.getVenuePage(PageRequest.of(page, size));
     }
+
+    @Override
+    public Page<Venue> getVenueByCity(String city, Integer page, Integer size) {
+        return venueRepository.getVenueByCity(city, PageRequest.of(page, size));
+    }
+
 }

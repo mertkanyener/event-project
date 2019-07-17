@@ -13,5 +13,6 @@ public interface VenueService {
     Venue findByVenueId(Long id);
     List<Venue> getAll();
     Page<Venue> getVenuePage(Integer page, Integer size);
+    Page<Venue> getVenueByCity(String city, Integer page, Integer size);
 
 }

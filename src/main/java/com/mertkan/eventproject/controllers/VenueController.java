@@ -31,6 +31,12 @@ public class VenueController {
         return venueService.getVenuePage(page, size);
     }
 
+    @GetMapping(path = "/venues/city/{city}/page/{page}/size/{size}")
+    public Page<Venue> getVenueByCity(@PathVariable String city, @PathVariable Integer page,
+                                      @PathVariable Integer size) {
+        return venueService.getVenueByCity(city, page, size);
+    }
+
 
     // Admin methods
 
