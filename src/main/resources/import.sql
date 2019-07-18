@@ -50,12 +50,24 @@ INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (30, 'Demet Akalın', 'http://localh
 
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (1, 'Harbiye Cemil Topuzlu Açık Hava Tiyatrosu', 'Nişantaşı, Harbiye Mahallesi, 34367 Şişli/İstanbul', 'istanbul', 41.046053, 28.990041 );
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (2, 'Küçükçiftlik Park', 'Harbiye Mahallesi, Kadırgalar Yokuşu No:4, 34367 Maçka/İstanbul', 'istanbul',  41.044681, 28.993117 );
-INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (3, 'Zorlu PSM', 'Levazım Mah., Koru Sok. No:2, 34340 Beşiktaş/İstanbul', 'istanbul', 41.066146, 29.017428 );
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (3, 'Zorlu PSM - Turkcell Sahnesi', 'Levazım Mah., Koru Sok. No:2, 34340 Beşiktaş/İstanbul', 'istanbul', 41.066146, 29.017428 );
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (4, 'Babylon', 'Merkez, Silahşör Caddesi & Birahane Sokak Tarihi Bomonti Bira Fabrikası No:1, 34384 Şişli/İstanbul', 'istanbul', 41.058295, 28.979829);
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (5, 'Volkswagen Arena', 'Huzur, Maslak Ayazağa Cd. 4/A, 34396 Sarıyer/İstanbul', 'istanbul', 41.108725, 29.007590);
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (6, 'Life Park', 'Kazım Karabekir Paşa, Bahçeköy Cd. No:114, 34473 Sarıyer/İstanbul', 'istanbul', 41.167282, 29.000671)
 INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (7, 'IF Performance Hall Beşiktaş', 'Cihannüma, Hasfırın Cd. No:26, 34353 Beşiktaş/İstanbul', 'istanbul', 41.044063, 29.006439);
-
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (8, 'IF Performance Hall Ataşehir', 'Barbaros, Ataşehir Blv. No:216, 34746 Ataşehir/İstanbul', 'istanbul', 40.994201, 29.110373);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (9, 'Dorock XL', 'Caferağa, Namlı Market Yanı, Mühürdar Cd. No:60, 34710 Kadıköy/İstanbul', 'istanbul', 40.989753, 29.022880);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (10, 'Jolly Joker Vadistanbul', 'Ayazağa, Ayazağa Cendere Cd. 109/C, 34396 Sarıyer/İstanbul', 'istanbul', 41.107419, 28.987153);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (11, 'Kadıköy Sahne', 'Osmanağa, Kırtasiyeci Sk. No:23, 34714 Kadıköy/İstanbul', 'istanbul', 40.990339, 29.027750);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (12, 'Jolly Joker Beyoğlu', 'Hüseyinağa, Balo Sk. No:22, 34435 Beyoğlu/İstanbul', 'istanbul', 41.034952, 28.978550);
+INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (13, 'Zorlu PSM - %100 Studio', 'Levazım Mah., Koru Sok. No:2, 34340 Beşiktaş/İstanbul', 'istanbul', 41.066146, 29.017428);
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
+-- INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES ();
 
 --INSERT EVENTS
 
