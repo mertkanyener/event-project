@@ -17,5 +17,5 @@ public interface EventService {
     Page<Event> findByMonth(Integer month, Integer page, Integer size);
     Page<Event> findByDate(Integer day, Integer month, Integer year, Integer page, Integer size);
     Page<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year, Integer page, Integer size);
-
+    Page<Event> findByCity(String city, Integer page, Integer size);
 }

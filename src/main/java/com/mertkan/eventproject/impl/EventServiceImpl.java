@@ -106,5 +106,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByVenueIdAndMonth(monthStart, monthEnd, venueId, PageRequest.of(page, size));
     }
 
+    @Override
+    public Page<Event> findByCity(String city, Integer page, Integer size) {
+        return eventRepository.findByCity(city, PageRequest.of(page, size));
+    }
+
 
 }
