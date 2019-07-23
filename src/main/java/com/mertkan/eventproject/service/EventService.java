@@ -3,6 +3,8 @@ package com.mertkan.eventproject.service;
 import com.mertkan.eventproject.model.Event;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 
 public interface EventService {
 
@@ -18,4 +20,5 @@ public interface EventService {
     Page<Event> findByDate(Integer day, Integer month, Integer year, Integer page, Integer size);
     Page<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year, Integer page, Integer size);
     Page<Event> findByCity(String city, Integer page, Integer size);
+    List<Event> findByName(String name);
 }

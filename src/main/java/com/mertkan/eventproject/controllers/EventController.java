@@ -5,6 +5,8 @@ import com.mertkan.eventproject.service.EventService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class EventController {
@@ -62,6 +64,11 @@ public class EventController {
     @GetMapping(path = "/events/city/{city}/page/{page}/size/{size}")
     public Page<Event> getEventsByCity(@PathVariable String city, @PathVariable Integer page, @PathVariable Integer size) {
         return eventService.findByCity(city, page, size);
+    }
+
+    @GetMapping(path = "/events/name/{name}")
+    public List<Event> getEventsByName(@PathVariable String name) {
+        return eventService.findByName(name);
     }
 
     // Admin methods

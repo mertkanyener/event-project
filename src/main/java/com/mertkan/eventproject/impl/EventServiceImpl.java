@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -111,5 +112,8 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByCity(city, PageRequest.of(page, size));
     }
 
-
+    @Override
+    public List<Event> findByName(String name) {
+        return eventRepository.findEventByName(name);
+    }
 }

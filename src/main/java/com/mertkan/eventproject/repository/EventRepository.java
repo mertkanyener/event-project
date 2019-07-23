@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
@@ -38,6 +39,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Page<Event> findByArtists_Id(@Param("artistId") Long id, Pageable pageable);
     @Query("select event from Event event join event.venue venue where venue.city= :city order by event.date asc")
     Page<Event> findByCity(@Param("city") String city, Pageable pageable);
-
-
+    List<Event> findEventByName(String name);
 }
