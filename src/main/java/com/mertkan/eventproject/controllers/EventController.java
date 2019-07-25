@@ -71,6 +71,9 @@ public class EventController {
         return eventService.findByName(name);
     }
 
+    @GetMapping(path = "/events")
+    public List<Event> getAllEvents() { return eventService.findAll(); }
+
     // Admin methods
 
     @PostMapping(path = "/admin/events")

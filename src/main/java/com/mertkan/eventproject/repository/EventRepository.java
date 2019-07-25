@@ -12,6 +12,9 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
+
+    @Query("select event from Event event order by date asc")
+    List<Event> getAll();
     @Query("select event from  Event event order by date asc")
     Page<Event> getAll(Pageable pageable);
     @Query("select event from Event event where event.id= :id")

@@ -116,4 +116,9 @@ public class EventServiceImpl implements EventService {
     public List<Event> findByName(String name) {
         return eventRepository.findEventByName(name);
     }
+
+    @Override
+    public List<Event> findAll() {
+        return eventRepository.getAll();
+    }
 }
