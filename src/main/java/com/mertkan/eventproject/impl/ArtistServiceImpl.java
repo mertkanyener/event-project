@@ -34,7 +34,7 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public List<Artist> getAll() {
-        return artistRepository.findAll();
+        return artistRepository.getAll();
     }
 
     @Override
