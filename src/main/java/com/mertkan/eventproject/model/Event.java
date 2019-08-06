@@ -84,4 +84,6 @@ public class Event {
     public void setArtists(List<Artist> artists) {
         this.artists = artists;
     }
+
+    public Long getVenue_Id() { return venue.getId(); }
 }
