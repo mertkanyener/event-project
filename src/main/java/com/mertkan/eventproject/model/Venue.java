@@ -1,6 +1,7 @@
 package com.mertkan.eventproject.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "venue")
@@ -88,4 +89,6 @@ public class Venue {
     public void setCity(String city) {
         this.city = city;
     }
+
+
 }

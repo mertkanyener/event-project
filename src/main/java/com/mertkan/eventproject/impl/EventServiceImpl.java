@@ -121,4 +121,9 @@ public class EventServiceImpl implements EventService {
     public List<Event> findAll() {
         return eventRepository.getAll();
     }
+
+    @Override
+    public List<Event> findAllByVenue(Long venueId) {
+        return eventRepository.findAllByVenueId(venueId);
+    }
 }

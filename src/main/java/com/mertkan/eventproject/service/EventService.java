@@ -22,4 +22,5 @@ public interface EventService {
     Page<Event> findByCity(String city, Integer page, Integer size);
     List<Event> findByName(String name);
     List<Event> findAll();
+    List<Event> findAllByVenue(Long venueId);
 }
