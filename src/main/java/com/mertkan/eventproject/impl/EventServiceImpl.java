@@ -126,4 +126,12 @@ public class EventServiceImpl implements EventService {
     public List<Event> findAllByVenue(Long venueId) {
         return eventRepository.findAllByVenueId(venueId);
     }
+
+    @Override
+    public List<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
+
+        return eventRepository.findByVenueIdAndMonth(monthStart, monthEnd, venueId);
+    }
 }

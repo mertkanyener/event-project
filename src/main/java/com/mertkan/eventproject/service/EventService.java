@@ -23,4 +23,5 @@ public interface EventService {
     List<Event> findByName(String name);
     List<Event> findAll();
     List<Event> findAllByVenue(Long venueId);
+    List<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year);
 }

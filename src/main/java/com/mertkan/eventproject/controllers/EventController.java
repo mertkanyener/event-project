@@ -44,6 +44,12 @@ public class EventController {
         return eventService.findByVenueAndMonth(id, month, year, page, size);
     }
 
+    @GetMapping(path = "/events/venue/{id}/month/{month}/year/{year}")
+    public List<Event> getEventsByVenueAndMonth(@PathVariable Long id, @PathVariable Integer month, @PathVariable Integer year) {
+        return eventService.findByVenueAndMonth(id, month, year);
+    }
+
+
     @GetMapping(path = "/events/year/{year}/month/{month}/day/{day}/page/{page}/size/{size}")
     public Page<Event> getEventsByDate(@PathVariable Integer year, @PathVariable Integer month,
                                        @PathVariable Integer day, @PathVariable Integer page,
@@ -76,6 +82,7 @@ public class EventController {
 
     @GetMapping(path = "/events/venue/{id}")
     public List<Event> getAllEventsByVenue(@PathVariable Long id) { return eventService.findAllByVenue(id); }
+
 
     // Admin methods
 
