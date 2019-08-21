@@ -1,6 +1,5 @@
 package com.mertkan.eventproject.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,18 +16,19 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    TokenStore tokenStore;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserApprovalHandler userApprovalHandler;
-
-    @Autowired
+    private final TokenStore tokenStore;
+    private final PasswordEncoder passwordEncoder;
+    private final UserApprovalHandler userApprovalHandler;
     @Qualifier("authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+
+    public OAuth2Config(final TokenStore tokenStore, final PasswordEncoder passwordEncoder,
+                        final UserApprovalHandler userApprovalHandler, final AuthenticationManager authenticationManager) {
+        this.tokenStore = tokenStore;
+        this.passwordEncoder = passwordEncoder;
+        this.userApprovalHandler = userApprovalHandler;
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception{

@@ -23,8 +23,11 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Order(100)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    ClientDetailsService clientDetailsService;
+    private final ClientDetailsService clientDetailsService;
+
+    public WebSecurityConfig(final ClientDetailsService clientDetailsService) {
+        this.clientDetailsService = clientDetailsService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

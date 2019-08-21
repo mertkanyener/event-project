@@ -29,8 +29,12 @@ public class Event {
     @JoinColumn(name = "event_id"), inverseJoinColumns =
     @JoinColumn(name = "artist_id"))
     private List<Artist> artists;
-    @Column(name = "webLink")
+    @Column(name = "web_link")
     private String webLink;
+    @Column(name = "genre")
+    private String genre;
+    @Column(name = "spotify_link")
+    private String spotifyLink;
 
     public String getWebLink() {
         return webLink;
@@ -96,5 +100,21 @@ public class Event {
 
     public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getSpotifyLink() {
+        return spotifyLink;
+    }
+
+    public void setSpotifyLink(String spotifyLink) {
+        this.spotifyLink = spotifyLink;
     }
 }
