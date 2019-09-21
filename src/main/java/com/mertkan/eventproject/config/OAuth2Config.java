@@ -33,11 +33,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception{
         clients.inMemory()
-                .withClient("admin-client")
-                    .authorizedGrantTypes("password", "refresh_token")
+                .withClient("dino-client")
+                    .authorizedGrantTypes("password", "refresh_token", "client_credentials")
                     .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                     .scopes("read", "write", "trust")
-                    .secret("mert-secret")
+                    .secret(passwordEncoder.encode("dino-secret"))
                     .accessTokenValiditySeconds(3600)
                     .refreshTokenValiditySeconds(7200);
     }

@@ -1,6 +1,8 @@
 package com.mertkan.eventproject.config;
 
 
+import com.mertkan.eventproject.impl.UserDetailsServiceImpl;
+import com.mertkan.eventproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
@@ -24,9 +28,21 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ClientDetailsService clientDetailsService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public WebSecurityConfig(final ClientDetailsService clientDetailsService) {
+
+    @Bean
+    @Override
+    public UserDetailsService userDetailsServiceBean() throws Exception {
+        return new UserDetailsServiceImpl(userRepository);
+    }
+
+    public WebSecurityConfig(final ClientDetailsService clientDetailsService, final UserRepository userRepository,
+                             final PasswordEncoder passwordEncoder) {
         this.clientDetailsService = clientDetailsService;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -34,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/events/**", "/artists/**",
-                            "/venues/**", "/facebook/**",
-                            "/oauth/token").permitAll()
+                            "/venues/**", "/facebook/**", "/validation/**", "/register",
+                            "/oauth/token**", "/login/**").permitAll()
 
                 .and().csrf().disable()
                 .authorizeRequests()
@@ -46,8 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("admin123").roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password("admin123").roles("ADMIN");
+        auth
+                .userDetailsService(userDetailsServiceBean())
+                .passwordEncoder(passwordEncoder);
+
     }
 
 

@@ -9,4 +9,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT DISTINCT user FROM User user WHERE user.email= :email")
     User findByEmail(@Param("email") String email);
+
 }

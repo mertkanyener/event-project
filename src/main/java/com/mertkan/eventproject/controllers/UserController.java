@@ -1,21 +1,31 @@
-//package com.mertkan.eventproject.controllers;
-//
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import java.security.Principal;
-//import java.util.LinkedHashMap;
-//import java.util.Map;
-//
-//@RestController
-//public class UserController {
-//
-//    @RequestMapping({"/user", "/me"})
-//    public Map<String, String> user(Principal principal) {
-//        Map<String, String> map = new LinkedHashMap<>();
-//        map.put("name", principal.getName());
-//        return map;
-//    }
-//
-//
-//}
+package com.mertkan.eventproject.controllers;
+
+import com.mertkan.eventproject.model.User;
+import com.mertkan.eventproject.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(final UserService userService) { this.userService = userService; }
+
+    @GetMapping(path = "/validation/email/{email}")
+    public int findEmail(@PathVariable String email) {
+        if (userService.findByEmail(email) != null) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @PostMapping(path = "/register")
+    public void register(@RequestBody User user) {
+        userService.save(user);
+    }
+
+
+
+
+}
