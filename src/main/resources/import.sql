@@ -1,7 +1,7 @@
--- INSERT INTO USER_ (ID, EMAIL, USERNAME, PASSWORD) VALUES (1, 'admin@email.com', 'admin', 'admin1');
+INSERT INTO USER_ (ID, EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, FACEBOOK_USER) VALUES (1, 'admin@email.com', 'Mertkan', 'Yener',  '{bcrypt}$2a$10$iNHEgEWcTWY.tnqZF2zmgOz6PJ257IGomy4JqCApdmsSg4r8HpQRC', 0);
 INSERT INTO ROLE (ROLE_ID, ROLE) VALUES (1, 'ADMIN');
 INSERT INTO ROLE (ROLE_ID, ROLE) VALUES (2, 'USER');
--- INSERT INTO USER_ROLE (USER_ID, ROLE_ID) VALUES (1, 1);
+INSERT INTO USER_ROLE (USER_ID, ROLE_ID) VALUES (1, 1);
 -- INSERT INTO USER_ROLE (USER_ID, ROLE_ID) VALUES (1, 2);
 
 -- INSERT INTO ARTIST(ID, NAME, IMAGE) VALUES (1, 'Tarkan', 'http://localhost:9999/images/artists/shiba.jpg');
@@ -14,7 +14,7 @@ INSERT INTO ROLE (ROLE_ID, ROLE) VALUES (2, 'USER');
 
 --INSERT ARTISTS
 
-INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (1, 'Tarkan', 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (1, 'Tarkan', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (2, 'Sıla', 'http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (3, 'Kenan Doğulu', 'http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (4, 'Ezhel', 'http://localhost:9999/images/artists/shiba.jpg');

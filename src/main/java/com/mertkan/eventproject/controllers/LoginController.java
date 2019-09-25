@@ -1,5 +1,7 @@
 package com.mertkan.eventproject.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +77,10 @@ public class LoginController {
             response.append(inputLine);
         }
         in.close();
+
+        Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+        logger.info("Response: " + response.toString());
 
         return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
     }

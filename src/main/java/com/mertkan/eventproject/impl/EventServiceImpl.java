@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -59,7 +60,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Page<Event> findTillEndOfMonth(Integer page, Integer size) {
+    public List<Event> findTillEndOfMonth() {
 
         LocalDate now = LocalDate.now();
         LocalDate monthEnd = now.withDayOfMonth(now.lengthOfMonth());
@@ -69,7 +70,7 @@ public class EventServiceImpl implements EventService {
         logger.info("Current date: " + now);
         logger.info("End of the month: " + monthEnd);
 
-        return eventRepository.findTillEndOfMonth(monthEnd, PageRequest.of(page, size));
+        return eventRepository.findTillEndOfMonth(monthEnd);
     }
 
     @Override
@@ -84,7 +85,14 @@ public class EventServiceImpl implements EventService {
         logger.info("Month End: " + monthEnd);
 
         return eventRepository.findByMonth(monthStart, monthEnd, PageRequest.of(page, size));
+    }
 
+    @Override
+    public List<Event> filterEvents(Collection<String> cities, Collection<String> genres, Integer month) {
+        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
+
+        return eventRepository.filterEvents(cities, genres, monthStart, monthEnd);
     }
 
     @Override
@@ -134,4 +142,15 @@ public class EventServiceImpl implements EventService {
 
         return eventRepository.findByVenueIdAndMonth(monthStart, monthEnd, venueId);
     }
+
+    @Override
+    public List<Event> findSavedEvents(Long userId) { return eventRepository.findSavedEvents(userId); }
+
+    @Override
+    public List<Event> findAttendingEvents(Long userId) { return eventRepository.findAttendingEvents(userId); }
+
+    @Override
+    public List<Event> findEventsByName(String name) { return eventRepository.findEventsByName(name); }
+
+
 }

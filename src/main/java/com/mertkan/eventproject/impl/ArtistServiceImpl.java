@@ -46,4 +46,7 @@ public class ArtistServiceImpl implements ArtistService {
     public Page<Artist> getArtistsPage(Integer page, Integer size) {
         return artistRepository.getArtists(PageRequest.of(page, size));
     }
+
+    @Override
+    public List<Artist> findLikedArtists(Long userId) { return artistRepository.findLikedArtists(userId); }
 }

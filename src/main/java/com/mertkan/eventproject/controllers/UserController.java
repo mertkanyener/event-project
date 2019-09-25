@@ -1,8 +1,11 @@
 package com.mertkan.eventproject.controllers;
 
+import com.mertkan.eventproject.model.Event;
 import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -26,6 +29,10 @@ public class UserController {
     }
 
 
+    @GetMapping(path = "/admin/users/role/{roleId}")
+    public List<User> getAll(@PathVariable Long roleId) { return userService.findByRole(roleId); }
 
+    @PostMapping(path = "/user/{userId}/save/event/{eventId}")
+    public void saveEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertSavedEvent(userId, eventId); }
 
 }

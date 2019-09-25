@@ -5,6 +5,7 @@ import com.mertkan.eventproject.service.EventService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -27,9 +28,9 @@ public class EventController {
         return eventService.findByEventId(id);
     }
 
-    @GetMapping(path = "/events/now/page/{page}/size/{size}")
-    public Page<Event> getEventsThisMonth(@PathVariable Integer page, @PathVariable Integer size) {
-        return eventService.findTillEndOfMonth(page, size);
+    @GetMapping(path = "/events/now")
+    public List<Event> getEventsThisMonth() {
+        return eventService.findTillEndOfMonth();
     }
 
     @GetMapping(path = "/events/month/{month}/page/{page}/size/{size}")
@@ -83,6 +84,22 @@ public class EventController {
     @GetMapping(path = "/events/venue/{id}")
     public List<Event> getAllEventsByVenue(@PathVariable Long id) { return eventService.findAllByVenue(id); }
 
+    @GetMapping(path = "/events/search/{name}")
+    public List<Event> searchEventsByName(@PathVariable String name) { return eventService.findEventsByName(name); }
+
+    @GetMapping(path = "/events/filter/city/{cities}/genre/{genres}/month/{month}")
+    public List<Event> filterEvents(@PathVariable Collection<String> cities, @PathVariable Collection<String> genres,
+                                    @PathVariable Integer month) {
+        return eventService.filterEvents(cities, genres, month);
+    }
+
+    // User methods
+
+    @GetMapping(path = "/user/{userId}/events/saved")
+    public List<Event> getSavedEvents(@PathVariable Long userId) { return eventService.findSavedEvents(userId); }
+
+    @GetMapping(path = "/user/{userId}/events/attending")
+    public List<Event> getAttendingEvents(@PathVariable Long userId) { return eventService.findAttendingEvents(userId); }
 
     // Admin methods
 

@@ -31,6 +31,11 @@ public class ArtistController {
         return artistService.findByArtistId(id);
     }
 
+    //User methods
+
+    @GetMapping(path = "/user/{userId}/artists/liked")
+    public List<Artist> getLikedArtists(@PathVariable Long userId) { return artistService.findLikedArtists(userId); }
+
 
     //Admin methods
 

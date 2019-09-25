@@ -13,5 +13,6 @@ public interface ArtistService {
     Artist findByArtistId(Long id);
     List<Artist> getAll();
     Page<Artist> getArtistsPage(Integer page, Integer size);
+    List<Artist> findLikedArtists(Long userId);
 
 }
