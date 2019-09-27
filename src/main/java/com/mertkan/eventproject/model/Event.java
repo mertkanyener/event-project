@@ -31,8 +31,11 @@ public class Event {
     private List<Artist> artists;
     @Column(name = "web_link")
     private String webLink;
-    @Column(name = "genre")
-    private String genre;
+    @ManyToMany()
+    @JoinTable(name = "event_genre", joinColumns =
+    @JoinColumn(name = "event_id"), inverseJoinColumns =
+    @JoinColumn(name = "genre_id"))
+    private List<Genre> genres;
     @Column(name = "spotify_link")
     private String spotifyLink;
 
@@ -102,12 +105,12 @@ public class Event {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public String getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     public String getSpotifyLink() {

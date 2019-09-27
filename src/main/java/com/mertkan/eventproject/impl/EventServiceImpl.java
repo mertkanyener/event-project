@@ -88,11 +88,27 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> filterEvents(Collection<String> cities, Collection<String> genres, Integer month) {
+    public List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month) {
         LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
         return eventRepository.filterEvents(cities, genres, monthStart, monthEnd);
+    }
+
+    @Override
+    public List<Event> filterEventsByCity(Collection<String> cities, Integer month) {
+        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
+
+        return eventRepository.findEventsByCityAndMonth(cities, monthStart, monthEnd);
+    }
+
+    @Override
+    public List<Event> filterEventsByGenre(Collection<Long> genres, Integer month) {
+        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
+
+        return eventRepository.findEventsByGenreAndMonth(genres, monthStart, monthEnd);
     }
 
     @Override
@@ -105,14 +121,6 @@ public class EventServiceImpl implements EventService {
 
         return eventRepository.findByDate(date, PageRequest.of(page, size));
 
-    }
-
-    @Override
-    public Page<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year, Integer page, Integer size) {
-        LocalDate monthStart = LocalDate.of(year, month, 1);
-        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
-
-        return eventRepository.findByVenueIdAndMonth(monthStart, monthEnd, venueId, PageRequest.of(page, size));
     }
 
     @Override
@@ -144,6 +152,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<Event> findEventsByMonth(Integer month) {
+        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
+
+        return eventRepository.findEventsByMonth(monthStart, monthEnd);
+    }
+
+    @Override
     public List<Event> findSavedEvents(Long userId) { return eventRepository.findSavedEvents(userId); }
 
     @Override
@@ -152,5 +168,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> findEventsByName(String name) { return eventRepository.findEventsByName(name); }
 
-
+    @Override
+    public List<Event> findByArtist(Long artistId) { return eventRepository.findEventsByArtist(artistId); }
 }

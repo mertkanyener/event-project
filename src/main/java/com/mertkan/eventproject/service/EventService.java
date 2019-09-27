@@ -18,9 +18,9 @@ public interface EventService {
     Event findByEventId(Long id);
     Page<Event> findByArtists_Id(Long id, Integer page, Integer size);
     List<Event> findTillEndOfMonth();
+    List<Event> findEventsByMonth(Integer month);
     Page<Event> findByMonth(Integer month, Integer page, Integer size);
     Page<Event> findByDate(Integer day, Integer month, Integer year, Integer page, Integer size);
-    Page<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year, Integer page, Integer size);
     Page<Event> findByCity(String city, Integer page, Integer size);
     List<Event> findByName(String name);
     List<Event> findAll();
@@ -29,6 +29,8 @@ public interface EventService {
     List<Event> findSavedEvents(Long userId);
     List<Event> findAttendingEvents(Long userId);
     List<Event> findEventsByName(String name);
-    List<Event> filterEvents(Collection<String> cities, Collection<String> genres, Integer month);
-
+    List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month);
+    List<Event> filterEventsByCity(Collection<String> cities, Integer month);
+    List<Event> filterEventsByGenre(Collection<Long> genres, Integer month);
+    List<Event> findByArtist(Long artistId);
 }

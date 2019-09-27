@@ -45,12 +45,35 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "from Event event " +
             "join event.venue venue " +
             "where venue.city in :cities " +
-            "and event.genre in :genres " +
             "and event.date between :monthStart and :monthEnd " +
+            "and event.id in ( select event.id from Event event join event.genres genre where genre.id in :genres ) " +
             "order by event.date asc")
-    List<Event> filterEvents(@Param("cities") Collection<String> cities, @Param("genres") Collection<String> genres,
+    List<Event> filterEvents(@Param("cities") Collection<String> cities, @Param("genres") Collection<Long> genres,
                              @Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
 
+    @Query("select event " +
+            "from Event event " +
+            "join event.venue venue " +
+            "where venue.city in :cities " +
+            "and event.date between :monthStart and :monthEnd " +
+            "order by event.date asc")
+    List<Event> findEventsByCityAndMonth(@Param("cities") Collection<String> cities, @Param("monthStart") LocalDate monthStart,
+                                         @Param("monthEnd") LocalDate monthEnd);
+
+    @Query("select event " +
+            "from Event event " +
+            "join event.genres genre " +
+            "where genre.id in :genres " +
+            "and event.date between :monthStart and :monthEnd " +
+            "order by event.date asc")
+    List<Event> findEventsByGenreAndMonth(@Param("genres") Collection<Long> genres, @Param("monthStart") LocalDate monthStart,
+                                          @Param("monthEnd") LocalDate monthEnd);
+
+    @Query("select event from Event event join event.artists artists where artists.id= :artistId order by event.date asc")
+    List<Event> findEventsByArtist(@Param("artistId") Long artistId);
+
+    @Query("select event from Event event where event.date between :monthStart and :monthEnd order by event.date asc")
+    List<Event> findEventsByMonth(@Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
 
     // Pageable methods
 

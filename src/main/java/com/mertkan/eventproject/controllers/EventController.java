@@ -38,13 +38,6 @@ public class EventController {
         return eventService.findByMonth(month, page, size);
     }
 
-    @GetMapping(path = "/events/venue/{id}/month/{month}/year/{year}/page/{page}/size/{size}")
-    public Page<Event> getEventsByVenueAndMonth(@PathVariable Integer page, @PathVariable Integer size,
-                                                @PathVariable Integer month, @PathVariable Long id,
-                                                @PathVariable Integer year) {
-        return eventService.findByVenueAndMonth(id, month, year, page, size);
-    }
-
     @GetMapping(path = "/events/venue/{id}/month/{month}/year/{year}")
     public List<Event> getEventsByVenueAndMonth(@PathVariable Long id, @PathVariable Integer month, @PathVariable Integer year) {
         return eventService.findByVenueAndMonth(id, month, year);
@@ -87,10 +80,18 @@ public class EventController {
     @GetMapping(path = "/events/search/{name}")
     public List<Event> searchEventsByName(@PathVariable String name) { return eventService.findEventsByName(name); }
 
-    @GetMapping(path = "/events/filter/city/{cities}/genre/{genres}/month/{month}")
-    public List<Event> filterEvents(@PathVariable Collection<String> cities, @PathVariable Collection<String> genres,
-                                    @PathVariable Integer month) {
-        return eventService.filterEvents(cities, genres, month);
+    @GetMapping(path = "/events/filter")
+    public List<Event> filterEvents(@RequestParam(required = false) Collection<String> cities, @RequestParam(required = false) Collection<Long> genres,
+                                    @RequestParam Integer month) {
+        if (cities == null && genres != null) {
+            return eventService.filterEventsByGenre(genres, month);
+        } else if (genres == null && cities != null) {
+            return eventService.filterEventsByCity(cities, month);
+        } else if (genres != null && cities != null) {
+            return eventService.filterEvents(cities, genres, month);
+        } else {
+            return eventService.findEventsByMonth(month);
+        }
     }
 
     // User methods

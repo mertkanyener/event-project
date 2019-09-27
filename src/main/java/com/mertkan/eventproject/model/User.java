@@ -29,24 +29,24 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "facebook_user")
     private boolean facebookUser;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_saved_events", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "event_id"))
     private List<Event> savedEvents;
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_attending_events", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "event_id"))
     private List<Event> attendingEvents;
     @Column(name = "liked_genres")
     private String[] likedGenres;
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_liked_artists", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "artist_id"))
