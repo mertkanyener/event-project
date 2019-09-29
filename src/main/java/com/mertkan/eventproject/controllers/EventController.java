@@ -82,13 +82,13 @@ public class EventController {
 
     @GetMapping(path = "/events/filter")
     public List<Event> filterEvents(@RequestParam(required = false) Collection<String> cities, @RequestParam(required = false) Collection<Long> genres,
-                                    @RequestParam Integer month) {
+                                    @RequestParam Integer month, @RequestParam Integer year) {
         if (cities == null && genres != null) {
-            return eventService.filterEventsByGenre(genres, month);
+            return eventService.filterEventsByGenre(genres, month, year);
         } else if (genres == null && cities != null) {
-            return eventService.filterEventsByCity(cities, month);
+            return eventService.filterEventsByCity(cities, month, year);
         } else if (genres != null && cities != null) {
-            return eventService.filterEvents(cities, genres, month);
+            return eventService.filterEvents(cities, genres, month, year);
         } else {
             return eventService.findEventsByMonth(month);
         }
@@ -120,7 +120,5 @@ public class EventController {
     public void deleteEvent(@PathVariable Long id) {
         eventService.delete(id);
     }
-
-
 
 }

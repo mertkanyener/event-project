@@ -29,8 +29,8 @@ public interface EventService {
     List<Event> findSavedEvents(Long userId);
     List<Event> findAttendingEvents(Long userId);
     List<Event> findEventsByName(String name);
-    List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month);
-    List<Event> filterEventsByCity(Collection<String> cities, Integer month);
-    List<Event> filterEventsByGenre(Collection<Long> genres, Integer month);
+    List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month, Integer year);
+    List<Event> filterEventsByCity(Collection<String> cities, Integer month, Integer year);
+    List<Event> filterEventsByGenre(Collection<Long> genres, Integer month, Integer year);
     List<Event> findByArtist(Long artistId);
 }

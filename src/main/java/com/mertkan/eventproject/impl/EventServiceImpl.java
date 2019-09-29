@@ -88,24 +88,24 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month) {
-        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+    public List<Event> filterEvents(Collection<String> cities, Collection<Long> genres, Integer month, Integer year) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
         return eventRepository.filterEvents(cities, genres, monthStart, monthEnd);
     }
 
     @Override
-    public List<Event> filterEventsByCity(Collection<String> cities, Integer month) {
-        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+    public List<Event> filterEventsByCity(Collection<String> cities, Integer month, Integer year) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
         return eventRepository.findEventsByCityAndMonth(cities, monthStart, monthEnd);
     }
 
     @Override
-    public List<Event> filterEventsByGenre(Collection<Long> genres, Integer month) {
-        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+    public List<Event> filterEventsByGenre(Collection<Long> genres, Integer month, Integer year) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
         return eventRepository.findEventsByGenreAndMonth(genres, monthStart, monthEnd);

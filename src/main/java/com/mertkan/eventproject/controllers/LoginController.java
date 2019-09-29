@@ -39,11 +39,22 @@ public class LoginController {
 
         connection.setRequestMethod("POST");
 
+        BufferedReader in;
+
+        try {
+            in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getInputStream())
+            );
+        } catch (Exception e) {
+            in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getErrorStream())
+            );
+        }
+
         int responseCode = connection.getResponseCode();
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream())
-        );
         String inputLine;
         StringBuffer response = new StringBuffer();
 
@@ -52,7 +63,7 @@ public class LoginController {
         }
         in.close();
 
-        return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
+        return new ResponseEntity<String>(response.toString(), null, HttpStatus.valueOf(responseCode));
     }
 
     @GetMapping("/login/facebook-user")
