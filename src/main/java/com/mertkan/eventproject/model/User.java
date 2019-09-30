@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
-    @SequenceGenerator(sequenceName = "user_seq", initialValue = 2, allocationSize = 1, name = "USER_SEQ")
+    @SequenceGenerator(sequenceName = "user_seq", initialValue = 1000, allocationSize = 1, name = "USER_SEQ")
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "email", nullable = false)
@@ -27,6 +28,10 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "password")
     private String password;
+    @Column(name = "gender")
+    private String gender;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
     @Column(name = "facebook_user")
     private boolean facebookUser;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -44,8 +49,11 @@ public class User implements UserDetails {
     @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "event_id"))
     private List<Event> attendingEvents;
-    @Column(name = "liked_genres")
-    private String[] likedGenres;
+    @ManyToMany
+    @JoinTable(name = "user_liked_genres", joinColumns =
+    @JoinColumn(name = "user_id"), inverseJoinColumns =
+    @JoinColumn(name = "genre_id"))
+    private List<Genre> likedGenres;
     @ManyToMany
     @JoinTable(name = "user_liked_artists", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
@@ -112,11 +120,11 @@ public class User implements UserDetails {
         this.attendingEvents = attendingEvents;
     }
 
-    public String[] getLikedGenres() {
+    public List<Genre> getLikedGenres() {
         return likedGenres;
     }
 
-    public void setLikedGenres(String[] likedGenres) {
+    public void setLikedGenres(List<Genre> likedGenres) {
         this.likedGenres = likedGenres;
     }
 
@@ -134,6 +142,22 @@ public class User implements UserDetails {
 
     public void setFacebookUser(boolean facebookUser) {
         this.facebookUser = facebookUser;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override

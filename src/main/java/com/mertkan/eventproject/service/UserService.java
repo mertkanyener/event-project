@@ -12,6 +12,7 @@ public interface UserService {
 //    void insertAttendingEvent(Long userId, Long eventId);
 //    void insertLikedArtist(Long userId, Long artistId);
     User findByEmail(String email);
+    User findById(Long id);
     List<User> findByRole(Long roleId);
 
 

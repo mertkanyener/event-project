@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findUserById(Long id);
     @Query("SELECT DISTINCT user FROM User user WHERE user.email= :email")
     User findByEmail(@Param("email") String email);
     @Query("select user from User user join user.roles roles where roles.id= :roleId")
