@@ -23,11 +23,6 @@ public class UserController {
         }
     }
 
-    @PostMapping(path = "/register")
-    public void register(@RequestBody User user) {
-        userService.save(user);
-    }
-
     @GetMapping(path = "/user/{id}")
     public User getUserById(@PathVariable Long id) { return userService.findById(id); }
 
@@ -36,7 +31,31 @@ public class UserController {
     public List<User> getAll(@PathVariable Long roleId) { return userService.findByRole(roleId); }
 
 
-    @PostMapping(path = "/user/{userId}/save/event/{eventId}")
-    public void saveEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertSavedEvent(userId, eventId); }
+    @PostMapping(path = "/user/{userId}/events/saved/{eventId}")
+    public void addSavedEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertSavedEvent(userId, eventId); }
+
+    @PostMapping(path = "/user/{userId}/events/attending/{eventId})")
+    public void addAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertAttendingEvent(userId, eventId); }
+
+    @PostMapping(path = "/user/{userId}/artists/{artistId}")
+    public void addLikedArtist(@PathVariable Long userId, @PathVariable Long artistId) { userService.insertLikedArtist(userId, artistId); }
+
+    @PostMapping(path = "/user/{userId}/genres/{genreId}")
+    public void addLikedGenre(@PathVariable Long userId, @PathVariable Long genreId) { userService.insertLikedGenre(userId, genreId); }
+
+
+
+    @DeleteMapping(path = "/user/{userId}/events/saved/{eventId}")
+    public void deleteSavedEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.deleteSavedEvent(userId, eventId); }
+
+    @DeleteMapping(path = "/user/{userId}/events/attending/{eventId}")
+    public void deleteAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.deleteAtttendingEvent(userId, eventId); }
+
+    @DeleteMapping(path = "/user/{userId}/artists/{artistId}")
+    public void deleteLikedArtist(@PathVariable Long userId, @PathVariable Long artistId) { userService.deleteLikedArtist(userId, artistId); }
+
+    @DeleteMapping(path = "/user/{userId}/genres/{genreId}")
+    public void deleteLikedGenre(@PathVariable Long userId, @PathVariable Long genreId) { userService.deleteLikedGenre(userId, genreId); }
+
 
 }

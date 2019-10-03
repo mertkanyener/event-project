@@ -1,12 +1,10 @@
 package com.mertkan.eventproject.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mertkan.eventproject.model.User;
+import com.mertkan.eventproject.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,9 +22,26 @@ public class LoginController {
 
     private final String redirectUri = "http://localhost:4200/";
 
+    private final UserService userService;
+
+    public LoginController(final UserService userService) {
+        this.userService = userService;
+    }
+
+
+    @PostMapping(path = "/register")
+    public void register(@RequestBody User user) {
+        if (user.isFacebookUser()) {
+            user.setPassword("yr6vzn");
+        }
+        userService.save(user);
+    }
 
     @GetMapping(path = "/login")
-    public ResponseEntity<String> dinomikLogin(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception{
+    public ResponseEntity<String> dinomikLogin(@RequestParam("username") String username, @RequestParam(required = false) String password) throws Exception{
+        if (password == null) {
+            password = "yr6vzn";
+        }
         String url = "http://localhost:6060/oauth/token?client_id=" + this.clientId
                 + "&client_secret=" + this.clientSecret
                 + "&username=" + username
@@ -65,35 +80,6 @@ public class LoginController {
         return new ResponseEntity<String>(response.toString(), null, HttpStatus.valueOf(responseCode));
     }
 
-    @GetMapping("/login/facebook-user")
-    public ResponseEntity<String> facebookLogin() throws Exception {
-        String url = "http://localhost:6060/oauth/token?client_id=" + this.clientId
-                + "&client_secret=" +  this.clientSecret
-                + "&grant_type=client_credentials";
-        URL obj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-
-        connection.setRequestMethod("POST");
-
-        int responseCode = connection.getResponseCode();
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream())
-        );
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        Logger logger = LoggerFactory.getLogger(LoginController.class);
-
-        logger.info("Response: " + response.toString());
-
-        return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
-    }
 
     @GetMapping(path = "/facebook")
     public ResponseEntity<String> facebookLogin(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception{

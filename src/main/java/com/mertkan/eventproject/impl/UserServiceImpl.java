@@ -64,4 +64,67 @@ public class UserServiceImpl implements UserService {
                 .setParameter(2, eventId)
                 .executeUpdate();
     }
+
+    @Override
+    @Transactional
+    public void insertAttendingEvent(Long userId, Long eventId) {
+        entityManager.createNativeQuery("INSERT INTO user_attending_events(user_id, event_id) VALUES (?,?)")
+                .setParameter(1, userId)
+                .setParameter(2, eventId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void insertLikedArtist(Long userId, Long artistId) {
+        entityManager.createNativeQuery("INSERT INTO user_liked_artists(user_id, artist_id) VALUES (?,?)")
+                .setParameter(1, userId)
+                .setParameter(2, artistId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void insertLikedGenre(Long userId, Long genreId) {
+        entityManager.createNativeQuery("INSERT INTO user_liked_genres(user_id, genre_id) VALUES (?,?)")
+                .setParameter(1, userId)
+                .setParameter(2, genreId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void deleteSavedEvent(Long userId, Long eventId) {
+        entityManager.createNativeQuery("DELETE FROM user_saved_events WHERE user_id = ? AND event_id = ?")
+                .setParameter(1, userId)
+                .setParameter(2, eventId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void deleteAtttendingEvent(Long userId, Long eventId) {
+        entityManager.createNativeQuery("DELETE FROM user_attending_events WHERE user_id = ? AND event_id = ?")
+                .setParameter(1, userId)
+                .setParameter(2, eventId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void deleteLikedArtist(Long userId, Long artistId) {
+        entityManager.createNativeQuery("DELETE FROM  user_liked_artists WHERE user_id = ? AND artist_id = ?")
+                .setParameter(1, userId)
+                .setParameter(2, artistId)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void deleteLikedGenre(Long userId, Long genreId) {
+        entityManager.createNativeQuery("DELETE FROM user_liked_genres WHERE user_id = ? AND genre_id = ?")
+                .setParameter(1, userId)
+                .setParameter(2, genreId)
+                .executeUpdate();
+    }
 }
