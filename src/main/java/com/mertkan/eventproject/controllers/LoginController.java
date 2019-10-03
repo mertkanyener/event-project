@@ -48,6 +48,22 @@ public class LoginController {
                 + "&password=" + password
                 + "&grant_type=password";
 
+        return sendRequest(url);
+    }
+
+    @GetMapping(path = "/login/refresh_token")
+    public ResponseEntity<String> refreshToken(@RequestParam String refreshToken) throws Exception {
+
+        String url = "http://localhost:6060/oauth/token?client_id=" + this.clientId
+                + "&client_secret=" + this.clientSecret
+                + "&grant_type=refresh_token"
+                + "&refresh_token=" + refreshToken;
+
+        return sendRequest(url);
+    }
+
+
+    public ResponseEntity<String> sendRequest(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
 
@@ -81,38 +97,38 @@ public class LoginController {
     }
 
 
-    @GetMapping(path = "/facebook")
-    public ResponseEntity<String> facebookLogin(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception{
-
-        String url = "https://graph.facebook.com/v3.2/oauth/access_token?client_id="+ this.clientId
-                + "&redirect_uri=" + this.redirectUri
-                + "&client_secret=" + this.clientSecret
-                + "&code=" + code
-                + "&state=" + state;
-
-        URL obj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-
-        connection.setRequestMethod("GET");
-
-        int responseCode = connection.getResponseCode();
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream())
-        );
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        System.out.println("Response: " + response.toString());
-
-        return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
-
-    }
+//    @GetMapping(path = "/facebook")
+//    public ResponseEntity<String> facebookLogin(@RequestParam("code") String code, @RequestParam("state") String state) throws Exception{
+//
+//        String url = "https://graph.facebook.com/v3.2/oauth/access_token?client_id="+ this.clientId
+//                + "&redirect_uri=" + this.redirectUri
+//                + "&client_secret=" + this.clientSecret
+//                + "&code=" + code
+//                + "&state=" + state;
+//
+//        URL obj = new URL(url);
+//        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+//
+//        connection.setRequestMethod("GET");
+//
+//        int responseCode = connection.getResponseCode();
+//
+//        BufferedReader in = new BufferedReader(
+//                new InputStreamReader(connection.getInputStream())
+//        );
+//        String inputLine;
+//        StringBuffer response = new StringBuffer();
+//
+//        while ((inputLine = in.readLine()) != null) {
+//            response.append(inputLine);
+//        }
+//        in.close();
+//
+//        System.out.println("Response: " + response.toString());
+//
+//        return new ResponseEntity<String>(response.toString(), null, HttpStatus.MULTI_STATUS);
+//
+//    }
 
 
 

@@ -40,7 +40,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                     .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                     .scopes("read", "write", "trust")
                     .secret(passwordEncoder.encode("dino-secret"))
-                    .accessTokenValiditySeconds(3600)
+                    .accessTokenValiditySeconds(10)
                     .refreshTokenValiditySeconds(7200);
     }
 
