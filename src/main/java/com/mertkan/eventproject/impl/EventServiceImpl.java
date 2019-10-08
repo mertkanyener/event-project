@@ -152,8 +152,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findEventsByMonth(Integer month) {
-        LocalDate monthStart = LocalDate.of(LocalDate.now().getYear(), month, 1);
+    public List<Event> findEventsByMonth(Integer month, Integer year) {
+        LocalDate monthStart = LocalDate.of(year, month, 1);
         LocalDate monthEnd = monthStart.withDayOfMonth(monthStart.lengthOfMonth());
 
         return eventRepository.findEventsByMonth(monthStart, monthEnd);

@@ -18,7 +18,7 @@ public interface EventService {
     Event findByEventId(Long id);
     Page<Event> findByArtists_Id(Long id, Integer page, Integer size);
     List<Event> findTillEndOfMonth();
-    List<Event> findEventsByMonth(Integer month);
+    List<Event> findEventsByMonth(Integer month, Integer year);
     Page<Event> findByMonth(Integer month, Integer page, Integer size);
     Page<Event> findByDate(Integer day, Integer month, Integer year, Integer page, Integer size);
     Page<Event> findByCity(String city, Integer page, Integer size);

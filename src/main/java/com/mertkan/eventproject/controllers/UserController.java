@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping(path = "/user/{userId}/events/saved/{eventId}")
     public void addSavedEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertSavedEvent(userId, eventId); }
 
-    @PostMapping(path = "/user/{userId}/events/attending/{eventId})")
+    @PostMapping(path = "/user/{userId}/events/attending/{eventId}")
     public void addAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertAttendingEvent(userId, eventId); }
 
     @PostMapping(path = "/user/{userId}/artists/{artistId}")

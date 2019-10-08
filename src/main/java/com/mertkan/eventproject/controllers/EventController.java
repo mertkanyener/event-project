@@ -90,7 +90,7 @@ public class EventController {
         } else if (genres != null && cities != null) {
             return eventService.filterEvents(cities, genres, month, year);
         } else {
-            return eventService.findEventsByMonth(month);
+            return eventService.findEventsByMonth(month, year);
         }
     }
 
