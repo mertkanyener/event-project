@@ -30,6 +30,8 @@ public class UserController {
     @GetMapping(path = "/admin/users/role/{roleId}")
     public List<User> getAll(@PathVariable Long roleId) { return userService.findByRole(roleId); }
 
+    @GetMapping(path = "/events/{eventId}/saved/users")
+    public List<User> getUsersBySavedEvent(@PathVariable Long eventId) { return userService.findUserBySavedEvents(eventId); }
 
     @PostMapping(path = "/user/{userId}/events/saved/{eventId}")
     public void addSavedEvent(@PathVariable Long userId, @PathVariable Long eventId) { userService.insertSavedEvent(userId, eventId); }

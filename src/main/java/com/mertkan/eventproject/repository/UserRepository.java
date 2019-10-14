@@ -19,4 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByRoleId(@Param("roleId") Long roleId);
     @Query("select event from User user join user.savedEvents event where user.id= :userId")
     List<Event> findSavedEvents(@Param("userId") Long userId);
+    @Query("select user from User user join user.savedEvents event where event.id = :eventId")
+    List<User> findUserBySavedEvents(@Param("eventId") Long eventId);
 }

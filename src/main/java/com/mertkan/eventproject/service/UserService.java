@@ -19,6 +19,6 @@ public interface UserService {
     User findByEmail(String email);
     User findById(Long id);
     List<User> findByRole(Long roleId);
-
+    List<User> findUserBySavedEvents(Long eventId);
 
 }

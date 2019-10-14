@@ -1,17 +1,17 @@
 package com.mertkan.eventproject.impl;
 
-import com.mertkan.eventproject.model.Event;
 import com.mertkan.eventproject.model.Role;
 import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.repository.RoleRepository;
 import com.mertkan.eventproject.repository.UserRepository;
 import com.mertkan.eventproject.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private static final Long LIMIT = 10000000000L;
+    private static Long last = 0L;
+
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -38,6 +42,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        if (!user.isFacebookUser()) {
+            Long id = System.currentTimeMillis() % LIMIT;
+            if ( id <= last ) {
+                id = (last + 1) % LIMIT;
+            }
+            last = id;
+            Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+            logger.info("ID: " + id.toString());
+            user.setId(id);
+        }
         Set<Role> roles = new HashSet<Role>();
         roles.add(roleRepository.findRoleById(2L));
         user.setRoles(roles);
@@ -126,5 +140,10 @@ public class UserServiceImpl implements UserService {
                 .setParameter(1, userId)
                 .setParameter(2, genreId)
                 .executeUpdate();
+    }
+
+    @Override
+    public List<User> findUserBySavedEvents(Long eventId) {
+        return userRepository.findUserBySavedEvents(eventId);
     }
 }
