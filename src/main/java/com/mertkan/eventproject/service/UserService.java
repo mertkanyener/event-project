@@ -1,6 +1,7 @@
 package com.mertkan.eventproject.service;
 
 import com.mertkan.eventproject.model.Event;
+import com.mertkan.eventproject.model.Friend;
 import com.mertkan.eventproject.model.User;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public interface UserService {
 
     void save(User user);
+    void addFriend(Long userId, Long friendId);
+    void deleteFriend(Long userId, Long friendId);
     void insertSavedEvent(Long userId, Long eventId);
     void insertAttendingEvent(Long userId, Long eventId);
     void insertLikedArtist(Long userId, Long artistId);
@@ -20,5 +23,10 @@ public interface UserService {
     User findById(Long id);
     List<User> findByRole(Long roleId);
     List<User> findUserBySavedEvents(Long eventId);
+    List<User> findFriendsByAttendingEvents(Long eventId, Long userId);
+    List<Friend> findFriendsByUserId(Long userId);
+    List<Friend> findFriendsByName(String firstName, String lastName);
+    List<Event> findAttendingEvents(Long userId);
+    Friend findFriend(Long id);
 
 }

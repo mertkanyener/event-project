@@ -32,6 +32,9 @@ public class User implements UserDetails {
     private LocalDate birthDate;
     @Column(name = "facebook_user")
     private boolean facebookUser;
+    @Column(name = "friends")
+    @ElementCollection
+    private List<Long> friends;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns =
     @JoinColumn(name = "user_id"), inverseJoinColumns =
@@ -156,6 +159,14 @@ public class User implements UserDetails {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Long> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Long> friends) {
+        this.friends = friends;
     }
 
     @Override

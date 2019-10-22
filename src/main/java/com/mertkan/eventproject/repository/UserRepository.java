@@ -1,6 +1,7 @@
 package com.mertkan.eventproject.repository;
 
 import com.mertkan.eventproject.model.Event;
+import com.mertkan.eventproject.model.Friend;
 import com.mertkan.eventproject.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,10 +16,23 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserById(Long id);
     @Query("SELECT DISTINCT user FROM User user WHERE user.email= :email")
     User findByEmail(@Param("email") String email);
+    @Query("select user from User user where user.firstName like :firstName% and user.lastName like :lastName%")
+    List<User> findUserByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
     @Query("select user from User user join user.roles roles where roles.id= :roleId")
     List<User> findByRoleId(@Param("roleId") Long roleId);
-    @Query("select event from User user join user.savedEvents event where user.id= :userId")
-    List<Event> findSavedEvents(@Param("userId") Long userId);
+    @Query("select event from User user join user.attendingEvents event where user.id= :userId")
+    List<Event> findAttendingEvents(@Param("userId") Long userId);
     @Query("select user from User user join user.savedEvents event where event.id = :eventId")
     List<User> findUserBySavedEvents(@Param("eventId") Long eventId);
+    @Query("select user " +
+            "from User user " +
+            "join user.attendingEvents event " +
+            "where event.id= :eventId and user.id in (select friend from User user join user.friends friend where user.id= :userId) ")
+    List<User> findFriendsByAttendingEvents(@Param("eventId") Long eventId, @Param("userId") Long userId);
+    @Query("select user " +
+            "from User user " +
+            "where user.id in (select friend from User user join user.friends friend where user.id= :userId)")
+    List<User> findFriendsByUserId(@Param("userId") Long userId);
+
+
 }

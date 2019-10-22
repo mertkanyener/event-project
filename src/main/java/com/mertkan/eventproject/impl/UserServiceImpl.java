@@ -1,5 +1,7 @@
 package com.mertkan.eventproject.impl;
 
+import com.mertkan.eventproject.model.Event;
+import com.mertkan.eventproject.model.Friend;
 import com.mertkan.eventproject.model.Role;
 import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.repository.RoleRepository;
@@ -12,9 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -58,6 +58,30 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+
+    @Override
+    public void addFriend(Long userId, Long friendId) {
+        User user = userRepository.findUserById(userId);
+        List<Long> friends = user.getFriends();
+        friends.add(friendId);
+        user.setFriends(friends);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteFriend(Long userId, Long friendId) {
+        User user = userRepository.findUserById(userId);
+        List<Long> friends = user.getFriends();
+        friends.remove(friendId);
+        user.setFriends(friends);
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<Event> findAttendingEvents(Long userId) { return userRepository.findAttendingEvents(userId); }
+
+    @Override
+    public List<User> findFriendsByAttendingEvents(Long eventId, Long userId) { return userRepository.findFriendsByAttendingEvents(eventId, userId); }
 
     @Override
     public User findById(Long id) { return this.userRepository.findUserById(id); }
@@ -145,5 +169,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUserBySavedEvents(Long eventId) {
         return userRepository.findUserBySavedEvents(eventId);
+    }
+
+    @Override
+    public Friend findFriend(Long id) {
+        User user = userRepository.findUserById(id);
+        return new Friend(user.getId(), user.getFirstName(), user.getLastName(), user.isFacebookUser());
+    }
+
+    @Override
+    public List<Friend> findFriendsByName(String firstName, String lastName) {
+        List<User> users = userRepository.findUserByName(firstName, lastName);
+        return usersToFriends(users);
+    }
+
+    @Override
+    public List<Friend> findFriendsByUserId(Long userId) {
+        List<User> users = userRepository.findFriendsByUserId(userId);
+        return usersToFriends(users);
+    }
+
+    public List<Friend> usersToFriends(List<User> users) {
+        List<Friend> friends = new ArrayList<>();
+        for (User user: users) {
+            Friend friend = new Friend(user.getId(), user.getFirstName(), user.getLastName(), user.isFacebookUser());
+            friends.add(friend);
+        }
+        return friends;
     }
 }
