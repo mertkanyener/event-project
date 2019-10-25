@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/admin")
 public class FileController {
 
     @Autowired
     FileStorageService fileStorageService;
 
-    @PostMapping("/images/{type}")
+    @PostMapping("/admin/images/{type}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("type") String type){
 
         String fileName = fileStorageService.storeFile(file, type);
@@ -36,7 +35,15 @@ public class FileController {
 
     }
 
-    @PostMapping("/images/multiple/{type}")
+    @PostMapping("/user/{userId}/image/upload")
+    public UploadFileResponse uploadUserImage(@RequestParam("file") MultipartFile file, @PathVariable("userId") Long userId) {
+        String fileName = fileStorageService.storeFile(file, "user");
+        String filePath = fileStorageService.getUserStorageLocation().toString() + "/" + fileName;
+
+        return new UploadFileResponse(fileName, filePath, file.getContentType(), file.getSize());
+    }
+
+    @PostMapping("/admin/images/multiple/{type}")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @PathVariable("type") String type) {
         return Arrays.asList(files)
                 .stream()

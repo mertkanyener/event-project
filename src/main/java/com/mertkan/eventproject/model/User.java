@@ -32,6 +32,8 @@ public class User implements UserDetails {
     private LocalDate birthDate;
     @Column(name = "facebook_user")
     private boolean facebookUser;
+    @Column(name = "image")
+    private String image;
     @Column(name = "friends")
     @ElementCollection
     private List<Long> friends;
@@ -167,6 +169,14 @@ public class User implements UserDetails {
 
     public void setFriends(List<Long> friends) {
         this.friends = friends;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

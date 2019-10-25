@@ -78,6 +78,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateImage(Long userId, String imageLink) {
+        User user = userRepository.findUserById(userId);
+        user.setImage(imageLink);
+        userRepository.save(user);
+    }
+
+    @Override
     public List<Event> findAttendingEvents(Long userId) { return userRepository.findAttendingEvents(userId); }
 
     @Override

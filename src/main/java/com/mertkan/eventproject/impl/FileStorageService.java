@@ -18,6 +18,7 @@ public class FileStorageService {
 
     private Path artistStorageLocation;
     private Path eventStorageLocation;
+    private Path userStorageLocation;
     private Path venueStorageLocation;
 
     @Autowired
@@ -25,6 +26,8 @@ public class FileStorageService {
         this.artistStorageLocation = Paths.get(fileStorageProperties.getArtistUploadDir())
                 .toAbsolutePath().normalize();
         this.eventStorageLocation = Paths.get(fileStorageProperties.getEventUploadDir())
+                .toAbsolutePath().normalize();
+        this.userStorageLocation = Paths.get(fileStorageProperties.getUserUploadDir())
                 .toAbsolutePath().normalize();
         this.venueStorageLocation = Paths.get(fileStorageProperties.getVenueUploadDir())
                 .toAbsolutePath().normalize();
@@ -41,6 +44,8 @@ public class FileStorageService {
                 targetLocation = this.artistStorageLocation.resolve(fileName);
             } else if (objectType.equals("event")) {
                 targetLocation = this.eventStorageLocation.resolve(fileName);
+            } else if (objectType.equals("user")) {
+                targetLocation = this.userStorageLocation.resolve(fileName);
             } else {
                 targetLocation = this.venueStorageLocation.resolve(fileName);
             }
@@ -78,5 +83,13 @@ public class FileStorageService {
 
     public void setVenueStorageLocation(Path venueStorageLocation) {
         this.venueStorageLocation = venueStorageLocation;
+    }
+
+    public Path getUserStorageLocation() {
+        return userStorageLocation;
+    }
+
+    public void setUserStorageLocation(Path userStorageLocation) {
+        this.userStorageLocation = userStorageLocation;
     }
 }

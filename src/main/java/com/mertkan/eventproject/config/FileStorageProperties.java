@@ -7,6 +7,7 @@ public class FileStorageProperties {
 
     private String artistUploadDir;
     private String eventUploadDir;
+    private String userUploadDir;
     private String venueUploadDir;
 
     public String getArtistUploadDir() {
@@ -31,5 +32,13 @@ public class FileStorageProperties {
 
     public void setVenueUploadDir(String venueUploadDir) {
         this.venueUploadDir = venueUploadDir;
+    }
+
+    public String getUserUploadDir() {
+        return userUploadDir;
+    }
+
+    public void setUserUploadDir(String userUploadDir) {
+        this.userUploadDir = userUploadDir;
     }
 }

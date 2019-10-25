@@ -63,6 +63,8 @@ public class UserController {
     @PostMapping(path = "/user/{userId}/genres/{genreId}")
     public void addLikedGenre(@PathVariable Long userId, @PathVariable Long genreId) { userService.insertLikedGenre(userId, genreId); }
 
+    @PutMapping(path = "/user/{userId}/image/save")
+    public void updateImage(@PathVariable Long userId, @RequestParam String imageLink) { userService.updateImage(userId, imageLink); }
 
     // DELETE Methods
 
