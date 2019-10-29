@@ -34,7 +34,7 @@ public class FileStorageService {
 
     }
 
-    public String storeFile(MultipartFile file, String objectType) {
+    public String storeFile(MultipartFile file, String objectType, Long userId) {
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Path targetLocation = null;
@@ -45,6 +45,7 @@ public class FileStorageService {
             } else if (objectType.equals("event")) {
                 targetLocation = this.eventStorageLocation.resolve(fileName);
             } else if (objectType.equals("user")) {
+
                 targetLocation = this.userStorageLocation.resolve(fileName);
             } else {
                 targetLocation = this.venueStorageLocation.resolve(fileName);

@@ -63,9 +63,9 @@ logging:
     org.springframework.security: warn
 
 file:
-  artist-upload-dir: C:/DEV/dinomiko/images/artists
-  event-upload-dir: C:/DEV/dinomiko/images/events
-  user-upload-dir: C:/DEV/dinomiko/images/users
-  venue-upload-dir: C:/DEV/dinomiko/images/venues
+  artist-upload-dir: C:/DEV/dinomik/images/artists
+  event-upload-dir: C:/DEV/dinomik/images/events
+  user-upload-dir: C:/DEV/dinomik/images/users
+  venue-upload-dir: C:/DEV/dinomik/images/venues
 server:
   port: 6060
