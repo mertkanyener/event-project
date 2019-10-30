@@ -5,6 +5,7 @@ import com.mertkan.eventproject.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,17 +25,17 @@ public class LoginController {
 
     private final UserService userService;
 
-    public LoginController(final UserService userService, ) {
+    public LoginController(final UserService userService) {
         this.userService = userService;
     }
 
 
     @PostMapping(path = "/register")
-    public void register(@RequestBody User user) {
+    public void register(@RequestBody User user, @RequestParam(value = "image", required = false) String image) {
         if (user.isFacebookUser()) {
             user.setPassword("yr6vzn");
         }
-        userService.save(user);
+        userService.save(user, image);
     }
 
     @GetMapping(path = "/login")
