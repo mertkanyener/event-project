@@ -1,10 +1,12 @@
 package com.mertkan.eventproject.controllers;
 
+import com.mertkan.eventproject.impl.FileStorageService;
 import com.mertkan.eventproject.model.Event;
 import com.mertkan.eventproject.model.Friend;
 import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,8 +14,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final FileStorageService fileStorageService;
 
-    public UserController(final UserService userService) { this.userService = userService; }
+    public UserController(final UserService userService, final FileStorageService fileStorageService) {
+        this.userService = userService;
+        this.fileStorageService = fileStorageService;
+    }
 
     @GetMapping(path = "/validation/email/{email}")
     public int findEmail(@PathVariable String email) {
@@ -63,8 +69,8 @@ public class UserController {
     @PostMapping(path = "/user/{userId}/genres/{genreId}")
     public void addLikedGenre(@PathVariable Long userId, @PathVariable Long genreId) { userService.insertLikedGenre(userId, genreId); }
 
-    @PutMapping(path = "/user/{userId}/image/save")
-    public void updateImage(@PathVariable Long userId, @RequestParam String imageLink) { userService.updateImage(userId, imageLink); }
+    @PostMapping(path = "/user/{userId}/image/save")
+    public void updateImage(@PathVariable Long userId, @RequestParam("image") MultipartFile image) { userService.updateImage(userId, image); }
 
     // DELETE Methods
 

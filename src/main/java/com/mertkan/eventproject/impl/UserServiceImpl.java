@@ -7,22 +7,14 @@ import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.repository.RoleRepository;
 import com.mertkan.eventproject.repository.UserRepository;
 import com.mertkan.eventproject.service.UserService;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
 import javax.persistence.*;
-import javax.xml.bind.DatatypeConverter;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -88,9 +80,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateImage(Long userId, String imageLink) {
+    public void updateImage(Long userId, MultipartFile image) {
         User user = userRepository.findUserById(userId);
-        user.setImage(imageLink);
+        String fileLoc = fileStorageService.storeFile(image, "user", userId);
+        user.setImage("http://localhost:9999/images/users/" + userId.toString());
         userRepository.save(user);
     }
 

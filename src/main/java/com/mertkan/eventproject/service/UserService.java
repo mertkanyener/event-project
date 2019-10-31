@@ -21,7 +21,7 @@ public interface UserService {
     void deleteAtttendingEvent(Long userId, Long eventId);
     void deleteLikedArtist(Long userId, Long artistId);
     void deleteLikedGenre(Long userId, Long genreId);
-    void updateImage(Long userId, String imageLink);
+    void updateImage(Long userId, MultipartFile image);
     User findByEmail(String email);
     User findById(Long id);
     List<User> findByRole(Long roleId);

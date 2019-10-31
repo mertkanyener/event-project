@@ -35,7 +35,7 @@ public class LoginController {
         if (user.isFacebookUser()) {
             user.setPassword("yr6vzn");
         }
-        userService.save(user, image);
+        userService.save(user);
     }
 
     @GetMapping(path = "/login")
