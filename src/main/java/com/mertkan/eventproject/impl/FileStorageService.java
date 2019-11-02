@@ -46,7 +46,7 @@ public class FileStorageService {
                 targetLocation = this.eventStorageLocation.resolve(fileName);
             } else if (objectType.equals("user")) {
                 String[] arr = fileName.split("\\.");
-                String fileExtension = arr[arr.length - 1];
+                String fileExtension = arr[arr.length - 1].toLowerCase();
                 fileName = userId.toString() + "." + fileExtension;
                 targetLocation = this.userStorageLocation.resolve(fileName);
             } else {

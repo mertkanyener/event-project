@@ -7,15 +7,24 @@ public class Friend {
     private Long id;
     private String firstName;
     private String lastName;
+    private String image;
     private boolean facebookUser;
 
-    public Friend(Long id, String firstName, String lastName, boolean facebookUser) {
+    public Friend(Long id, String firstName, String lastName, boolean facebookUser, String image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.facebookUser = facebookUser;
+        this.image = image;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;

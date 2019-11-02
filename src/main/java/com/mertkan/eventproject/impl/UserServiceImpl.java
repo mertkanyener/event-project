@@ -80,11 +80,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateImage(Long userId, MultipartFile image) {
+    public String updateImage(Long userId, MultipartFile image) {
         User user = userRepository.findUserById(userId);
-        String fileLoc = fileStorageService.storeFile(image, "user", userId);
-        user.setImage("http://localhost:9999/images/users/" + userId.toString());
+        String fileName = fileStorageService.storeFile(image, "user", userId);
+        String imagePath = "http://localhost:9999/images/users/" + fileName;
+        user.setImage(imagePath);
         userRepository.save(user);
+        return fileName;
     }
 
     @Override
@@ -184,7 +186,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Friend findFriend(Long id) {
         User user = userRepository.findUserById(id);
-        return new Friend(user.getId(), user.getFirstName(), user.getLastName(), user.isFacebookUser());
+        return new Friend(user.getId(), user.getFirstName(),
+                user.getLastName(), user.isFacebookUser(), user.getImage());
     }
 
     @Override
@@ -202,7 +205,8 @@ public class UserServiceImpl implements UserService {
     public List<Friend> usersToFriends(List<User> users) {
         List<Friend> friends = new ArrayList<>();
         for (User user: users) {
-            Friend friend = new Friend(user.getId(), user.getFirstName(), user.getLastName(), user.isFacebookUser());
+            Friend friend = new Friend(user.getId(), user.getFirstName(),
+                    user.getLastName(), user.isFacebookUser(), user.getImage());
             friends.add(friend);
         }
         return friends;
