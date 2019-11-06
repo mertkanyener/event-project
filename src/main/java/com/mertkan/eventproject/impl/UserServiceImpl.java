@@ -45,11 +45,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         if (!user.isFacebookUser()) {
-            Long id = System.currentTimeMillis() % LIMIT;
-            if ( id <= last ) {
-                id = (last + 1) % LIMIT;
-            }
-            last = id;
+            IDGenerator idGenerator = new IDGenerator();
+            Long id = idGenerator.generate();
             Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
             logger.info("ID: " + id.toString());
             user.setId(id);

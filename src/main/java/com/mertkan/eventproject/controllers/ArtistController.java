@@ -40,8 +40,8 @@ public class ArtistController {
     //Admin methods
 
     @PostMapping(path = "/admin/artists")
-    public void saveArtist(@RequestBody Artist artist) {
-        artistService.save(artist);
+    public Long saveArtist(@RequestBody Artist artist) {
+        return artistService.save(artist);
     }
 
     @PutMapping(path = "/admin/artists/{id}")

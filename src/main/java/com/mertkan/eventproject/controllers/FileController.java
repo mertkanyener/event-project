@@ -18,10 +18,11 @@ public class FileController {
         this.fileStorageService = fileStorageService;
     }
 
-    @PostMapping("/admin/images/{type}")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("type") String type){
+    @PostMapping("/admin/images/{type}/{id}")
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("type") String type,
+                                         @PathVariable("id") Long id){
 
-        String fileName = fileStorageService.storeFile(file, type, null);
+        String fileName = fileStorageService.storeFile(file, type, id);
         System.out.println("File name: " + fileName);
         String filePath;
         if (type.equals("artist")) {
@@ -45,11 +46,13 @@ public class FileController {
         return new UploadFileResponse(fileName, filePath, file.getContentType(), file.getSize());
     }
 
-    @PostMapping("/admin/images/multiple/{type}")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @PathVariable("type") String type) {
+    @PostMapping("/admin/images/multiple/{type}/{id}")
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files,
+                                                        @PathVariable("type") String type,
+                                                        @PathVariable("id") Long id) {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file, type))
+                .map(file -> uploadFile(file, type, id))
                 .collect(Collectors.toList());
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ArtistService {
 
-    void save(Artist artist);
+    Long save(Artist artist);
     void delete(Long id);
     void update(Artist artist);
     Artist findByArtistId(Long id);

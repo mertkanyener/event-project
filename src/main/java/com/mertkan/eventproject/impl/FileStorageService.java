@@ -34,23 +34,20 @@ public class FileStorageService {
 
     }
 
-    public String storeFile(MultipartFile file, String objectType, Long userId) {
+    public String storeFile(MultipartFile file, String objectType, Long objectId) {
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Path targetLocation = null;
 
         try {
             if (objectType.equals("artist")) {
-                targetLocation = this.artistStorageLocation.resolve(fileName);
+                targetLocation = this.artistStorageLocation.resolve(setFileName(fileName, objectId));
             } else if (objectType.equals("event")) {
-                targetLocation = this.eventStorageLocation.resolve(fileName);
+                targetLocation = this.eventStorageLocation.resolve(setFileName(fileName, objectId));
             } else if (objectType.equals("user")) {
-                String[] arr = fileName.split("\\.");
-                String fileExtension = arr[arr.length - 1].toLowerCase();
-                fileName = userId.toString() + "." + fileExtension;
-                targetLocation = this.userStorageLocation.resolve(fileName);
+                targetLocation = this.userStorageLocation.resolve(setFileName(fileName, objectId));
             } else {
-                targetLocation = this.venueStorageLocation.resolve(fileName);
+                targetLocation = this.venueStorageLocation.resolve(setFileName(fileName, objectId));
             }
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
@@ -62,6 +59,12 @@ public class FileStorageService {
 
         }
 
+    }
+
+    public String setFileName(String fileName, Long objectId) {
+        String[] arr = fileName.split("\\.");
+        String fileExtension = arr[arr.length - 1].toLowerCase();
+        return objectId.toString() + "." + fileExtension;
     }
 
     public Path getArtistStorageLocation() {

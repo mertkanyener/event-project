@@ -19,8 +19,12 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public void save(Artist artist) {
+    public Long save(Artist artist) {
+        IDGenerator idGenerator = new IDGenerator();
+        Long id = idGenerator.generate();
+        artist.setId(id);
         artistRepository.save(artist);
+        return id;
     }
 
     @Override
