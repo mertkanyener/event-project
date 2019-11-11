@@ -24,8 +24,12 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
-    public void save(Event event) {
+    public Long save(Event event) {
+        IDGenerator idGenerator = new IDGenerator();
+        Long id = idGenerator.generate();
+        event.setId(id);
         eventRepository.save(event);
+        return id;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void update(Event event) {
-
+        eventRepository.save(event);
     }
 
     @Override

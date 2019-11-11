@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface EventService {
 
-    void save(Event event);
+    Long save(Event event);
     void delete(Long id);
     void update(Event event);
     Page<Event> getAll(Integer page, Integer size);

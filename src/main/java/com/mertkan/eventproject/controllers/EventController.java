@@ -105,8 +105,8 @@ public class EventController {
     // Admin methods
 
     @PostMapping(path = "/admin/events")
-    public void saveEvent(@RequestBody Event event) {
-        eventService.save(event);
+    public Long saveEvent(@RequestBody Event event) {
+        return eventService.save(event);
     }
 
 

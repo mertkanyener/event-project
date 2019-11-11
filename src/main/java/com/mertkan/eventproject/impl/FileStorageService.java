@@ -37,17 +37,18 @@ public class FileStorageService {
     public String storeFile(MultipartFile file, String objectType, Long objectId) {
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        fileName = setFileName(fileName, objectId);
         Path targetLocation = null;
 
         try {
             if (objectType.equals("artist")) {
-                targetLocation = this.artistStorageLocation.resolve(setFileName(fileName, objectId));
+                targetLocation = this.artistStorageLocation.resolve(fileName);
             } else if (objectType.equals("event")) {
-                targetLocation = this.eventStorageLocation.resolve(setFileName(fileName, objectId));
+                targetLocation = this.eventStorageLocation.resolve(fileName);
             } else if (objectType.equals("user")) {
-                targetLocation = this.userStorageLocation.resolve(setFileName(fileName, objectId));
+                targetLocation = this.userStorageLocation.resolve(fileName);
             } else {
-                targetLocation = this.venueStorageLocation.resolve(setFileName(fileName, objectId));
+                targetLocation = this.venueStorageLocation.resolve(fileName);
             }
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 

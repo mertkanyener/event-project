@@ -21,6 +21,8 @@ public class Event {
     private LocalTime time;
     @Column(name = "day_of_week", nullable = false)
     private String dayOfWeek;
+    @Column(name = "image")
+    private String image;
     @ManyToOne
     @JoinColumn(name = "venue_id", nullable = false)
     private Venue venue;
@@ -119,5 +121,13 @@ public class Event {
 
     public void setSpotifyLink(String spotifyLink) {
         this.spotifyLink = spotifyLink;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

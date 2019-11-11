@@ -1,7 +1,13 @@
 package com.mertkan.eventproject.controllers;
 
 import com.mertkan.eventproject.impl.FileStorageService;
+import com.mertkan.eventproject.model.Artist;
+import com.mertkan.eventproject.model.Event;
+import com.mertkan.eventproject.model.Venue;
 import com.mertkan.eventproject.payload.UploadFileResponse;
+import com.mertkan.eventproject.service.ArtistService;
+import com.mertkan.eventproject.service.EventService;
+import com.mertkan.eventproject.service.VenueService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,9 +19,18 @@ import java.util.stream.Collectors;
 public class FileController {
 
     private final FileStorageService fileStorageService;
+    private final ArtistService artistService;
+    private final EventService eventService;
+    private final VenueService venueService;
 
-    public FileController(final FileStorageService fileStorageService) {
+    public FileController(final FileStorageService fileStorageService,
+                          final ArtistService artistService,
+                          final EventService eventService,
+                          final VenueService venueService) {
         this.fileStorageService = fileStorageService;
+        this.artistService = artistService;
+        this.eventService = eventService;
+        this.venueService = venueService;
     }
 
     @PostMapping("/admin/images/{type}/{id}")
@@ -23,14 +38,21 @@ public class FileController {
                                          @PathVariable("id") Long id){
 
         String fileName = fileStorageService.storeFile(file, type, id);
+        String imageServerPath = "http://localhost:9999/images/";
         System.out.println("File name: " + fileName);
         String filePath;
         if (type.equals("artist")) {
+            Artist artist = artistService.findByArtistId(id);
+            artist.setImage(imageServerPath + "artists/" + fileName);
+            artistService.update(artist);
             filePath = fileStorageService.getArtistStorageLocation().toString() + "\\" + fileName;
-            System.out.println("File path: " + filePath);
         } else if (type.equals("event")) {
+            Event event = eventService.findByEventId(id);
+            event.setImage(imageServerPath + "events/" + fileName);
             filePath = fileStorageService.getEventStorageLocation().toString() + "\\" + fileName;
         } else {
+            Venue venue = venueService.findByVenueId(id);
+            venue.setImage(imageServerPath + "venues/" + fileName);
             filePath = fileStorageService.getVenueStorageLocation().toString() + "\\" + fileName;
         }
 

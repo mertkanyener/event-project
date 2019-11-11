@@ -7,10 +7,8 @@ import javax.persistence.*;
 public class Artist {
 
     @Id
-    @SequenceGenerator(name="artist_seq", initialValue = 1001, allocationSize = 3)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "artist_seq")
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
     @Column(name = "image")
     private String image;

@@ -47,7 +47,7 @@ public class ArtistController {
     @PutMapping(path = "/admin/artists/{id}")
     public void updateArtist(@PathVariable Long id, @RequestBody Artist artist) {
         artist.setId(id);
-        artistService.save(artist);
+        artistService.update(artist);
     }
     @DeleteMapping(path = "/admin/artists/{id}")
     public void deleteArtist(@PathVariable Long id) {

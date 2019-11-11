@@ -20,8 +20,12 @@ public class VenueServiceImpl implements VenueService {
     }
 
     @Override
-    public void save(Venue venue) {
+    public Long save(Venue venue) {
+        IDGenerator idGenerator = new IDGenerator();
+        Long id = idGenerator.generate();
+        venue.setId(id);
         venueRepository.save(venue);
+        return id;
     }
 
     @Override
@@ -31,6 +35,7 @@ public class VenueServiceImpl implements VenueService {
 
     @Override
     public void update(Venue venue) {
+        venueRepository.save(venue);
     }
 
     @Override

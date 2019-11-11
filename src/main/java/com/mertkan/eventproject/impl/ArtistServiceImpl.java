@@ -34,6 +34,7 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public void update(Artist artist) {
+        artistRepository.save(artist);
     }
 
     @Override

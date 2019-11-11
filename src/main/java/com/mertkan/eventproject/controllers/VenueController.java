@@ -41,8 +41,8 @@ public class VenueController {
     // Admin methods
 
     @PostMapping(path = "/admin/venues")
-    public void saveVenue(@RequestBody Venue venue) {
-        venueService.save(venue);
+    public Long saveVenue(@RequestBody Venue venue) {
+        return venueService.save(venue);
     }
 
     @PutMapping(path = "/admin/venues/{id}")
