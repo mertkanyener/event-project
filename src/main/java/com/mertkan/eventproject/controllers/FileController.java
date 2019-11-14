@@ -49,10 +49,12 @@ public class FileController {
         } else if (type.equals("event")) {
             Event event = eventService.findByEventId(id);
             event.setImage(imageServerPath + "events/" + fileName);
+            eventService.update(event);
             filePath = fileStorageService.getEventStorageLocation().toString() + "\\" + fileName;
         } else {
             Venue venue = venueService.findByVenueId(id);
             venue.setImage(imageServerPath + "venues/" + fileName);
+            venueService.update(venue);
             filePath = fileStorageService.getVenueStorageLocation().toString() + "\\" + fileName;
         }
 

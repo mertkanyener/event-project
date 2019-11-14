@@ -48,7 +48,7 @@ public class VenueController {
     @PutMapping(path = "/admin/venues/{id}")
     public void updateVenue(@PathVariable Long id, @RequestBody Venue venue) {
         venue.setId(id);
-        venueService.save(venue);
+        venueService.update(venue);
     }
 
     @DeleteMapping(path = "/admin/venues/{id}")
