@@ -94,6 +94,12 @@ public class EventController {
         }
     }
 
+    @GetMapping(path = "/events/coming")
+    public List<Event> getAllComingEvents() { return eventService.findAllComing(); }
+
+    @GetMapping(path = "/events/past")
+    public List<Event> getAllPastEvents() { return eventService.findAllPast(); }
+
     // User methods
 
     @GetMapping(path = "/user/{userId}/events/saved")

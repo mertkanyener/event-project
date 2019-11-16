@@ -174,4 +174,10 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> findByArtist(Long artistId) { return eventRepository.findEventsByArtist(artistId); }
+
+    @Override
+    public List<Event> findAllComing() { return eventRepository.getAllComingEvents(); }
+
+    @Override
+    public List<Event> findAllPast() { return eventRepository.getAllPastEvents(); }
 }

@@ -24,6 +24,8 @@ public interface EventService {
     Page<Event> findByCity(String city, Integer page, Integer size);
     List<Event> findByName(String name);
     List<Event> findAll();
+    List<Event> findAllComing();
+    List<Event> findAllPast();
     List<Event> findAllByVenue(Long venueId);
     List<Event> findByVenueAndMonth(Long venueId, Integer month, Integer year);
     List<Event> findSavedEvents(Long userId);

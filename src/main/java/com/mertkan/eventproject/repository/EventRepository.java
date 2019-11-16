@@ -19,6 +19,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("select event from Event event order by date asc")
     List<Event> getAll();
 
+    @Query("select event from Event event where event.date >= current_date order by date asc")
+    List<Event> getAllComingEvents();
+
+    @Query("select event from Event event where event.date < current_date order by date asc")
+    List<Event> getAllPastEvents();
+
     @Query("select event from Event event where event.date between current_date and :monthEnd order by date asc")
     List<Event> findTillEndOfMonth(@Param("monthEnd")LocalDate monthEnd);
 
