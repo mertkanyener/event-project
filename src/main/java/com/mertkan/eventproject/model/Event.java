@@ -19,8 +19,6 @@ public class Event {
     private LocalDate date;
     @Column(name = "time", nullable = false)
     private LocalTime time;
-    @Column(name = "day_of_week", nullable = false)
-    private String dayOfWeek;
     @Column(name = "image")
     private String image;
     @ManyToOne
@@ -98,14 +96,6 @@ public class Event {
     }
 
     public Long getVenue_Id() { return venue.getId(); }
-
-    public String getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
 
     public List<Genre> getGenres() {
         return genres;

@@ -96,40 +96,40 @@ INSERT INTO VENUE (ID, NAME, ADDRESS, CITY, LATITUDE, LONGITUDE) VALUES (28, 'Ga
 
 --INSERT EVENTS
 
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (1, 'Tarkan', '2019-08-12', '20:00' , 1, 'Pazartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (2, 'Sıla', '2019-08-12', '19:30' , 1, 'Pazartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (3, 'Ceza', '2019-08-20', '20:30', 3, 'Salı');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (4, 'Athena', '2019-08-01', '21:00', 3, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (5, 'Teoman', '2019-08-07', '21:00', 3, 'Çarşamba' );
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (6, 'Summerfest', '2019-07-25', '15:00', 2, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (7, 'Tarkan', '2019-07-18', '20:30', 2, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (8, 'Teoman', '2019-07-26', '20:30', 1, 'Cuma');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (9, 'Kenan Doğulu', '2019-07-10', '20:00', 1, 'Çarşamba');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (10, 'Tarkan', '2019-06-29', '20:00', 3, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (11, 'Tarkan', '2019-12-29', '20:00', 3, 'Pazartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (12, 'Tarkan', '2019-11-29', '20:00', 2, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (13, 'Tarkan', '2019-10-15', '20:00', 2, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (14, 'Tarkan', '2019-11-10', '20:00', 1, 'Çarşamba');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (15, 'Tarkan', '2019-10-21', '20:00', 3, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (16, 'Tarkan', '2019-10-30', '20:00', 2, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (17, 'Tarkan', '2019-12-10', '19:00', 25, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (18, 'Tarkan', '2019-10-25', '20:00', 19, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (19, 'Tarkan', '2019-11-10', '20:00', 15, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (20, 'Tarkan', '2019-11-30', '20:00', 14, 'Cuma');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (21, 'Tarkan', '2019-09-01', '20:00', 27, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (22, 'Tarkan', '2019-10-05', '20:00', 20, 'Pazartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (23, 'Tarkan', '2019-10-15', '20:00', 21, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (24, 'Tarkan', '2019-10-24', '20:00', 22, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (25, 'Tarkan', '2019-11-25', '20:00', 23, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (26, 'Tarkan', '2019-10-03', '20:00', 24, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (27, 'Tarkan', '2019-10-02', '20:00', 26, 'Pazartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (28, 'Tarkan', '2019-10-31', '20:00', 27, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (29, 'Tarkan', '2019-09-29', '20:00', 28, 'Perşembe');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (30, 'Ceza', '2019-10-04', '22:00', 24, 'Pazar');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (31, 'Ceza', '2019-10-25', '21:00', 19, 'Cuma');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (32, 'Ezhel', '2019-10-15', '21:30', 14, 'Cumartesi');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (33, 'mor ve ötesi', '2019-10-18', '20:00', 27, 'Çarşamba');
-INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, DAY_OF_WEEK) VALUES (34, 'mor ve ötesi',  '2019-10-28','20:00', 3, 'Cuma');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (1, 'Tarkan', '2019-08-12', '20:00' , 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (2, 'Sıla', '2019-08-12', '19:30' , 1, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (3, 'Ceza', '2019-08-20', '20:30', 3, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (4, 'Athena', '2019-08-01', '21:00', 3, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (5, 'Teoman', '2019-08-07', '21:00', 3, 'http://localhost:9999/images/artists/shiba.jpg' );
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (6, 'Summerfest', '2019-07-25', '15:00', 2, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (7, 'Tarkan', '2019-07-18', '20:30', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (8, 'Teoman', '2019-07-26', '20:30', 1, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (9, 'Kenan Doğulu', '2019-07-10', '20:00', 1, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (10, 'Tarkan', '2019-06-29', '20:00', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (11, 'Tarkan', '2019-12-29', '20:00', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (12, 'Tarkan', '2019-11-29', '20:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (13, 'Tarkan', '2019-10-15', '20:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (14, 'Tarkan', '2019-11-10', '20:00', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (15, 'Tarkan', '2019-10-21', '20:00', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (16, 'Tarkan', '2019-10-30', '20:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (17, 'Tarkan', '2019-12-10', '19:00', 25, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (18, 'Tarkan', '2019-10-25', '20:00', 19, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (19, 'Tarkan', '2019-11-10', '20:00', 15, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (20, 'Tarkan', '2019-11-30', '20:00', 14, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (21, 'Tarkan', '2019-09-01', '20:00', 27, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (22, 'Tarkan', '2019-10-05', '20:00', 20, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (23, 'Tarkan', '2019-10-15', '20:00', 21, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (24, 'Tarkan', '2019-10-24', '20:00', 22, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (25, 'Tarkan', '2019-11-25', '20:00', 23, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (26, 'Tarkan', '2019-10-03', '20:00', 24, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (27, 'Tarkan', '2019-10-02', '20:00', 26, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (28, 'Tarkan', '2019-10-31', '20:00', 27, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (29, 'Tarkan', '2019-09-29', '20:00', 28, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSMHYAbOJXRdxt2OiVt8bBp7dBuuCzZQbaCeO15k8lUEmfZCq_A');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (30, 'Ceza', '2019-10-04', '22:00', 24, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (31, 'Ceza', '2019-10-25', '21:00', 19, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (32, 'Ezhel', '2019-10-15', '21:30', 14, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (33, 'mor ve ötesi', '2019-10-18', '20:00', 27, 'http://localhost:9999/images/artists/shiba.jpg');
+INSERT INTO EVENT (ID, NAME, DATE, TIME, VENUE_ID, IMAGE) VALUES (34, 'mor ve ötesi',  '2019-10-28','20:00', 3, 'http://localhost:9999/images/artists/shiba.jpg');
 
 
 
