@@ -119,7 +119,7 @@ public class EventController {
     @PutMapping(path = "/admin/events/{id}")
     public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
         event.setId(id);
-        eventService.save(event);
+        eventService.update(event);
     }
 
     @DeleteMapping(path = "/admin/events/{id}")

@@ -25,9 +25,12 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Long save(Event event) {
+        Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
+
         IDGenerator idGenerator = new IDGenerator();
         Long id = idGenerator.generate();
         event.setId(id);
+        logger.info("Event ID: " + event.getId());
         eventRepository.save(event);
         return id;
     }

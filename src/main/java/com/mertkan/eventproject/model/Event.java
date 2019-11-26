@@ -10,13 +10,14 @@ import java.util.List;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "date", nullable = false)
     private LocalDate date;
+    @Column(name = "end_date")
+    private LocalDate endDate;
     @Column(name = "time", nullable = false)
     private LocalTime time;
     @Column(name = "image")
@@ -119,5 +120,13 @@ public class Event {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }
