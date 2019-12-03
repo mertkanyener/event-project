@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+
         if (!user.isFacebookUser()) {
             IDGenerator idGenerator = new IDGenerator();
             Long id = idGenerator.generate();
@@ -54,8 +56,19 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<Role>();
         roles.add(roleRepository.findRoleById(2L));
         user.setRoles(roles);
+        user.setStatus("AC");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+
+    @Override
+    public void update(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void delete(Long userId) {
+        userRepository.deleteById(userId);
     }
 
     @Override
@@ -84,6 +97,11 @@ public class UserServiceImpl implements UserService {
         user.setImage(imagePath);
         userRepository.save(user);
         return fileName;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
@@ -188,8 +206,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Friend> findFriendsByName(String firstName, String lastName) {
-        List<User> users = userRepository.findUserByName(firstName, lastName);
+    public List<Friend> findFriendsByName(String firstName, String lastName, Long userId) {
+        List<User> users = userRepository.findUserByName(firstName, lastName, userId);
         return usersToFriends(users);
     }
 

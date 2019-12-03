@@ -14,10 +14,17 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserById(Long id);
+    List<User> findAll();
     @Query("SELECT DISTINCT user FROM User user WHERE user.email= :email")
     User findByEmail(@Param("email") String email);
-    @Query("select user from User user where user.firstName like :firstName% and user.lastName like :lastName%")
-    List<User> findUserByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    @Query("select user " +
+            "from User user " +
+            "join user.roles roles " +
+            "where user.firstName like :firstName% " +
+            "and user.lastName like :lastName% " +
+            "and user.id <> :userId " +
+            "and roles.id = 2")
+    List<User> findUserByName(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("userId") Long userId);
     @Query("select user from User user join user.roles roles where roles.id= :roleId")
     List<User> findByRoleId(@Param("roleId") Long roleId);
     @Query("select event from User user join user.attendingEvents event where user.id= :userId")

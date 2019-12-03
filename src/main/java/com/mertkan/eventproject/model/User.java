@@ -26,6 +26,10 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "password")
     private String password;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+    @Column(name = "status", nullable = false)
+    private String status;
     @Column(name = "gender")
     private String gender;
     @Column(name = "birth_date")
@@ -177,6 +181,22 @@ public class User implements UserDetails {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

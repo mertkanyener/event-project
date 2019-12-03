@@ -36,6 +36,9 @@ public class UserController {
     @GetMapping(path = "/admin/users/role/{roleId}")
     public List<User> getAll(@PathVariable Long roleId) { return userService.findByRole(roleId); }
 
+    @GetMapping(path = "/admin/users/delete/{id}")
+    public void deleteUser(@PathVariable Long id) { userService.delete(id); }
+
     @GetMapping(path = "/user/{userId}/event/{eventId}/friends")
     public List<User> getFriendsByAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { return userService.findFriendsByAttendingEvents(eventId, userId); }
 
@@ -50,7 +53,7 @@ public class UserController {
 
 
     @GetMapping(path = "/user/friends/find")
-    public List<Friend> findFriends(@RequestParam String firstName, @RequestParam String lastName) { return userService.findFriendsByName(firstName, lastName); }
+    public List<Friend> findFriends(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Long userId) { return userService.findFriendsByName(firstName, lastName, userId); }
 
     //POST Methods
 

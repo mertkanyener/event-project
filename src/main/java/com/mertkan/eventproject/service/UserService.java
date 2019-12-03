@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserService {
 
     void save(User user);
+    void update(User user);
+    void delete(Long userId);
     void addFriend(Long userId, Long friendId);
     void deleteFriend(Long userId, Long friendId);
     void insertSavedEvent(Long userId, Long eventId);
@@ -24,11 +26,12 @@ public interface UserService {
     String updateImage(Long userId, MultipartFile image);
     User findByEmail(String email);
     User findById(Long id);
+    List<User> findAll();
     List<User> findByRole(Long roleId);
     List<User> findUserBySavedEvents(Long eventId);
     List<User> findFriendsByAttendingEvents(Long eventId, Long userId);
     List<Friend> findFriendsByUserId(Long userId);
-    List<Friend> findFriendsByName(String firstName, String lastName);
+    List<Friend> findFriendsByName(String firstName, String lastName, Long userId);
     List<Event> findAttendingEvents(Long userId);
     Friend findFriend(Long id);
 
