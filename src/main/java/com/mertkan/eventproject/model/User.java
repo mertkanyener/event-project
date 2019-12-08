@@ -38,6 +38,14 @@ public class User implements UserDetails {
     private boolean facebookUser;
     @Column(name = "image")
     private String image;
+    @Column(name = "twitter")
+    private String twitter;
+    @Column(name = "spotify")
+    private String spotify;
+    @Column(name = "instagram")
+    private String instagram;
+    @Column(name = "facebook")
+    private String facebook;
     @Column(name = "friends")
     @ElementCollection
     private List<Long> friends;
@@ -197,6 +205,38 @@ public class User implements UserDetails {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getSpotify() {
+        return spotify;
+    }
+
+    public void setSpotify(String spotify) {
+        this.spotify = spotify;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
     }
 
     @Override
