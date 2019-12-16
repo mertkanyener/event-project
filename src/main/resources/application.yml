@@ -7,15 +7,20 @@ spring:
       max-request-size: 100MB
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     generate-ddl: true
   datasource:
-    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-    #username: mertkan
-    username: root
-    password: lachocalad11
+    url: jdbc:mysql://dinomikdb.c1f6bazer7d7.us-east-1.rds.amazonaws.com:3306/dinomikUAT?useSSL=false
+    username: admin
+    password: Lachocalad.1309
     driver-class-name: com.mysql.jdbc.Driver
+
+#    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
+#    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
+#    #username: mertkan
+#    username: root
+#    password: lachocalad11
+
 
 security:
   oauth2:
