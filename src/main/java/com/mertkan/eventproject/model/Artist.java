@@ -12,6 +12,14 @@ public class Artist {
     private String name;
     @Column(name = "image")
     private String image;
+    @Column(name = "instagram")
+    private String instagram;
+    @Column(name = "twitter")
+    private String twitter;
+    @Column(name = "facebook")
+    private String facebook;
+    @Column(name = "spotify")
+    private String spotify;
     @Column(name = "alt_images")
     private String[] altImages;
 
@@ -45,5 +53,37 @@ public class Artist {
 
     public void setAltImages(String[] altImages) {
         this.altImages = altImages;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getSpotify() {
+        return spotify;
+    }
+
+    public void setSpotify(String spotify) {
+        this.spotify = spotify;
     }
 }

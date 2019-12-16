@@ -93,4 +93,8 @@ public class UserController {
     public void deleteLikedGenre(@PathVariable Long userId, @PathVariable Long genreId) { userService.deleteLikedGenre(userId, genreId); }
 
 
+    @PutMapping(path = "/user/update")
+    public void updateUserProfile(@RequestBody User user) { userService.update(user); }
+
+
 }

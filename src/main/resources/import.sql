@@ -69,6 +69,9 @@ INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (28, 'Son Feci Bisiklet', 'http://lo
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (29, 'Gaye Su Akyol', 'http://localhost:9999/images/artists/shiba.jpg');
 INSERT INTO ARTIST (ID, NAME, IMAGE) VALUES (30, 'Demet Akalın', 'http://localhost:9999/images/artists/shiba.jpg');
 
+UPDATE ARTIST SET TWITTER='twitter.com/tarkan',INSTAGRAM='instagram.com/tarkan',SPOTIFY='https://open.spotify.com/artist/2yMN0IP20GOaN6q0p0zL5k?si=mCDbPUyOSNWiBG4HXGFm_g', FACEBOOK='facebook.com/tarkan' WHERE ID=1;
+
+
 
 --INSERT VENUES
 
