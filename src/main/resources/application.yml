@@ -1,4 +1,16 @@
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+  level:
+    org.hibernate: warn
+    org.springframework.web: warn
+    org.springframework.security: warn
+
+
 spring:
+  profiles:
+    active: "dev"
   servlet:
     multipart:
       enabled: true
@@ -9,63 +21,14 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+---
+spring:
+  profiles: dev
   datasource:
-    url: jdbc:mysql://dinomikdb.c1f6bazer7d7.us-east-1.rds.amazonaws.com:3306/dinomikUAT?useSSL=false
+    url: jdbc:mysql://dinomikdb.c1f6bazer7d7.us-east-1.rds.amazonaws.com:3306/dinomikDEV?useSSL=false
     username: admin
     password: Lachocalad.1309
     driver-class-name: com.mysql.jdbc.Driver
-
-#    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-#    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
-#    #username: mertkan
-#    username: root
-#    password: lachocalad11
-
-
-security:
-  oauth2:
-    client:
-      client-id: admin-client
-      client-secret: mert-secret
-      access-token-uri: http://localhost:8080/oauth/token
-
-
-
-
-#
-#security:
-#  oauth2:
-#    client:
-#      client-id: 647358105696445
-#      client-secret: 7c2cfc030acf8551641f65c2531ab0c3
-#      access-token-uri: https://graph.facebook.com/oauth/access_token
-#      token-name: oauth_token
-#      user-authorization-uri: https://www.facebook.com/dialog/oauth
-#      client-authentication-scheme: form
-#      authentication-scheme: query
-#    resource:
-#      user-info-uri: https://graph.facebook.com/me
-
-facebook:
-  client:
-    clientId: 647358105696445
-    clientSecret: 7c2cfc030acf8551641f65c2531ab0c3
-    accessTokenUri: https://graph.facebook.com/oauth/v3.2/access_token
-    userAuthorizationUri: https://www.facebook.com/v3.2/dialog/oauth
-    tokenName: oauth_token
-    authenticationScheme: query
-    clientAuthenticationScheme: form
-  resource:
-    userInfoUri: https://graph.facebook.com/me
-
-logging:
-  pattern:
-    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
-    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
-  level:
-    org.hibernate: warn
-    org.springframework.web: warn
-    org.springframework.security: warn
 
 file:
   artist-upload-dir: C:/DEV/dinomik/images/artists
@@ -74,3 +37,35 @@ file:
   venue-upload-dir: C:/DEV/dinomik/images/venues
 server:
   port: 6060
+
+security:
+  oauth2:
+    client:
+      client-id: admin-client
+      client-secret: mert-secret
+      access-token-uri: http://localhost:8080/oauth/token
+
+---
+spring:
+  profiles: uat
+
+  datasource:
+    url: jdbc:mysql://dinomikdb.c1f6bazer7d7.us-east-1.rds.amazonaws.com:3306/dinomikUAT?useSSL=false
+    username: admin
+    password: Lachocalad.1309
+    driver-class-name: com.mysql.jdbc.Driver
+
+file:
+  artist-upload-dir: /home/ubuntu/images/artists
+  event-upload-dir: /home/ubuntu/images/events
+  user-upload-dir: /home/ubuntu/images/users
+  venue-upload-dir: /home/ubuntu/images/venues
+server:
+  port: 6060
+
+
+#    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
+#    url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
+#    #username: mertkan
+#    username: root
+#    password: lachocalad11

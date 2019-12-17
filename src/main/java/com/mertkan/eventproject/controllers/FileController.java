@@ -8,6 +8,10 @@ import com.mertkan.eventproject.payload.UploadFileResponse;
 import com.mertkan.eventproject.service.ArtistService;
 import com.mertkan.eventproject.service.EventService;
 import com.mertkan.eventproject.service.VenueService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +26,9 @@ public class FileController {
     private final ArtistService artistService;
     private final EventService eventService;
     private final VenueService venueService;
+
+    @Value("${spring.profiles.active}")
+    private String profile;
 
     public FileController(final FileStorageService fileStorageService,
                           final ArtistService artistService,
@@ -38,6 +45,8 @@ public class FileController {
                                          @PathVariable("id") Long id){
 
         String fileName = fileStorageService.storeFile(file, type, id);
+        Logger logger = LoggerFactory.getLogger(FileController.class);
+        logger.info("Profile: " + profile);
         String imageServerPath = "http://localhost:9999/images/";
         System.out.println("File name: " + fileName);
         String filePath;
