@@ -2,6 +2,9 @@ package com.mertkan.eventproject.controllers;
 
 import com.mertkan.eventproject.model.User;
 import com.mertkan.eventproject.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +28,21 @@ public class LoginController {
 
     private final UserService userService;
 
+    @Value("${spring.profiles.active}")
+    private String profile;
+
     public LoginController(final UserService userService) {
         this.userService = userService;
+    }
+
+    public String getUrl(String profile) {
+        String result;
+        if (profile.equals("dev")) {
+            result = "http://localhost:6060/oauth/token";
+        } else {
+            result = "http://dinomik.com:9999/dinomik-api/oauth/token";
+        }
+        return result;
     }
 
 
@@ -43,7 +59,8 @@ public class LoginController {
         if (password == null) {
             password = "yr6vzn";
         }
-        String url = "http://localhost:6060/oauth/token?client_id=" + this.clientId
+
+        String url =  getUrl(profile) + "?client_id=" + this.clientId
                 + "&client_secret=" + this.clientSecret
                 + "&username=" + username
                 + "&password=" + password
@@ -55,7 +72,7 @@ public class LoginController {
     @GetMapping(path = "/login/refresh_token")
     public ResponseEntity<String> refreshToken(@RequestParam String refreshToken) throws Exception {
 
-        String url = "http://localhost:6060/oauth/token?client_id=" + this.clientId
+        String url =  getUrl(profile) + "?client_id=" + this.clientId
                 + "&client_secret=" + this.clientSecret
                 + "&grant_type=refresh_token"
                 + "&refresh_token=" + refreshToken;
