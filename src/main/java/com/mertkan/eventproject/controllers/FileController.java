@@ -40,14 +40,22 @@ public class FileController {
         this.venueService = venueService;
     }
 
+    public String getPath(String profile) {
+        String path;
+        if (profile.equals("dev")) {
+            path = "http://localhost:9999/images/";
+        } else {
+            path = "http://dinomik.com:9999/images/";
+        }
+        return path;
+    }
+
     @PostMapping("/admin/images/{type}/{id}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("type") String type,
                                          @PathVariable("id") Long id){
 
         String fileName = fileStorageService.storeFile(file, type, id);
-        Logger logger = LoggerFactory.getLogger(FileController.class);
-        logger.info("Profile: " + profile);
-        String imageServerPath = "http://localhost:9999/images/";
+        String imageServerPath = getPath(profile);
         System.out.println("File name: " + fileName);
         String filePath;
         if (type.equals("artist")) {
