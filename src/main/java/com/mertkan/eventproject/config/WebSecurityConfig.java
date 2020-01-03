@@ -51,12 +51,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/events/**", "/artists/**",
                             "/venues/**", "/facebook/**", "/validation/**", "/register",
-                            "/oauth/token**", "/login/**").permitAll()
+                            "/oauth/token**", "/login**").permitAll()
 
                 .and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin**").permitAll().anyRequest()
-                .authenticated();
+                .authenticated().and().cors().disable();
 
     }
 

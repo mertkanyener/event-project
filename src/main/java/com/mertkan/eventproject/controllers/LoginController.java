@@ -38,7 +38,7 @@ public class LoginController {
     public String getUrl(String profile) {
         String result;
         if (profile.equals("dev")) {
-            result = "http://localhost:6060/oauth/token";
+            result = "http://localhost:9999/dinomik-api/oauth/token";
         } else {
             result = "http://dinomik.com:9999/dinomik-api/oauth/token";
         }
