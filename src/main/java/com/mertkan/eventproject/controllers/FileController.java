@@ -45,7 +45,7 @@ public class FileController {
         if (profile.equals("dev")) {
             path = "http://localhost:9999/images/";
         } else {
-            path = "http://dinomik.com:9999/images/";
+            path = "http://dinomik.com:8080/images/";
         }
         return path;
     }

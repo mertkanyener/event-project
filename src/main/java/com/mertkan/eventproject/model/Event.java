@@ -30,7 +30,7 @@ public class Event {
     @JoinColumn(name = "event_id"), inverseJoinColumns =
     @JoinColumn(name = "artist_id"))
     private List<Artist> artists;
-    @Column(name = "web_link")
+    @Column(name = "web_link", unique = true)
     private String webLink;
     @ManyToMany()
     @JoinTable(name = "event_genre", joinColumns =

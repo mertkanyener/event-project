@@ -12,13 +12,13 @@ public class Artist {
     private String name;
     @Column(name = "image")
     private String image;
-    @Column(name = "instagram")
+    @Column(name = "instagram", unique = true)
     private String instagram;
-    @Column(name = "twitter")
+    @Column(name = "twitter", unique = true)
     private String twitter;
-    @Column(name = "facebook")
+    @Column(name = "facebook", unique = true)
     private String facebook;
-    @Column(name = "spotify")
+    @Column(name = "spotify", unique = true)
     private String spotify;
     @Column(name = "alt_images")
     private String[] altImages;

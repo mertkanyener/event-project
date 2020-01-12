@@ -17,10 +17,7 @@ spring:
       file-size-threshold: 2KB
       max-file-size: 50MB
       max-request-size: 100MB
-  jpa:
-    hibernate:
-      ddl-auto: create
-    generate-ddl: true
+
 ---
 spring:
   profiles: dev
@@ -35,6 +32,10 @@ spring:
     username: root
     password: lachocalad11
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
 
 
 
@@ -43,8 +44,7 @@ file:
   event-upload-dir: C:/DEV/dinomik/images/events
   user-upload-dir: C:/DEV/dinomik/images/users
   venue-upload-dir: C:/DEV/dinomik/images/venues
-server:
-  port: 6060
+
 
 security:
   oauth2:
@@ -63,13 +63,17 @@ spring:
     password: Lachocalad.1309
     driver-class-name: com.mysql.jdbc.Driver
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
 file:
-  artist-upload-dir: /home/ubuntu/images/artists
-  event-upload-dir: /home/ubuntu/images/events
-  user-upload-dir: /home/ubuntu/images/users
-  venue-upload-dir: /home/ubuntu/images/venues
-server:
-  port: 6060
+  artist-upload-dir: /home/ubuntu/dinomik/images/artists
+  event-upload-dir: /home/ubuntu/dinomik/images/events
+  user-upload-dir: /home/ubuntu/dinomik/images/users
+  venue-upload-dir: /home/ubuntu/dinomik/images/venues
+
 
 
 #    #url: jdbc:mysql://localhost:3306/dinomik?useSSL=false
