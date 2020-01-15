@@ -35,4 +35,7 @@ public interface EventService {
     List<Event> filterEventsByCity(Collection<String> cities, Integer month, Integer year);
     List<Event> filterEventsByGenre(Collection<Long> genres, Integer month, Integer year);
     List<Event> findByArtist(Long artistId);
+
+    boolean validateEventArtist(Event event);
+    boolean validateEventVenue(Event event);
 }

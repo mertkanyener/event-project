@@ -16,5 +16,6 @@ public interface ArtistService {
     List<Artist> findLikedArtists(Long userId);
 
     boolean validateArtistName(String name);
+    boolean validateArtistNameWithId(Artist artist);
 
 }

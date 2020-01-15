@@ -167,6 +167,17 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public boolean validateEventArtist(Event event) {
+        return false;
+    }
+
+    @Override
+    public boolean validateEventVenue(Event event) {
+        return false;
+    }
+
+
+    @Override
     public List<Event> findSavedEvents(Long userId) { return eventRepository.findSavedEvents(userId); }
 
     @Override
