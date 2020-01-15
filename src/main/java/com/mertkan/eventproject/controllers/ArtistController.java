@@ -3,6 +3,8 @@ package com.mertkan.eventproject.controllers;
 import com.mertkan.eventproject.model.Artist;
 import com.mertkan.eventproject.service.ArtistService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,8 +42,14 @@ public class ArtistController {
     //Admin methods
 
     @PostMapping(path = "/admin/artists")
-    public Long saveArtist(@RequestBody Artist artist) {
-        return artistService.save(artist);
+    public ResponseEntity<String> saveArtist(@RequestBody Artist artist) {
+        if (!artistService.validateArtistName(artist.getName())) {
+            return ResponseEntity.badRequest()
+                    .body("There is another artist with the same name!");
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Artist saved successfully!");
+
     }
 
     @PutMapping(path = "/admin/artists/{id}")

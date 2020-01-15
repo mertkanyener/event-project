@@ -18,6 +18,9 @@ spring:
       max-file-size: 50MB
       max-request-size: 100MB
 
+server:
+  port: 6060
+
 ---
 spring:
   profiles: dev
@@ -34,7 +37,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     generate-ddl: true
 
 

@@ -20,6 +20,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
     @Query("select distinct artist from Artist artist where artist.id= :id")
     Artist findByArtistId(@Param("id") Long id);
 
+    Artist findArtistByName(String name);
+
     @Query("select artist from User user join user.likedArtists artist where user.id= :userId")
     List<Artist> findLikedArtists(@Param("userId") Long userId);
 

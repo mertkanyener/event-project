@@ -15,4 +15,6 @@ public interface ArtistService {
     Page<Artist> getArtistsPage(Integer page, Integer size);
     List<Artist> findLikedArtists(Long userId);
 
+    boolean validateArtistName(String name);
+
 }

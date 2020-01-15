@@ -54,4 +54,13 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public List<Artist> findLikedArtists(Long userId) { return artistRepository.findLikedArtists(userId); }
+
+    @Override
+    public boolean validateArtistName(String name) {
+        if (artistRepository.findArtistByName(name) != null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
