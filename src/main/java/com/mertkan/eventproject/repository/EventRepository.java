@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -81,9 +82,45 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("select event from Event event where event.date between :monthStart and :monthEnd order by event.date asc")
     List<Event> findEventsByMonth(@Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
 
+    //Validation methods
+
+    @Query("select event " +
+            "from Event event " +
+            "join event.artists artist " +
+            "where event.date= :date " +
+            "and event.time= :time " +
+            "and artist.id in :artists ")
+    List<Event> validateEventArtist(@Param("date") LocalDate date, @Param("time") LocalTime time, @Param("artists") Collection<Long> artists);
+
+    @Query("select event " +
+            "from Event event " +
+            "join event.artists artist " +
+            "where event.date= :date " +
+            "and event.time= :time " +
+            "and artist.id in :artists " +
+            "and event.id <> :eventId")
+    Event validateEventArtistWithId(@Param("date") LocalDate date, @Param("time") LocalTime time, @Param("artists") Collection<Long> artists, @Param("eventId") Long eventId);
+
+    @Query("select event " +
+            "from Event event " +
+            "join event.venue venue " +
+            "where event.date= :date " +
+            "and event.time= :time " +
+            "and venue.id= :venueId")
+    Event validateEventVenue(@Param("date") LocalDate date, @Param("time") LocalTime time, @Param("venueId") Long venueId);
+
+    @Query("select event " +
+            "from Event event " +
+            "join event.venue venue " +
+            "where event.date= :date " +
+            "and event.time= :time " +
+            "and venue.id= :venueId " +
+            "and event.id <> :eventId")
+    Event validateEventVenueWithId(@Param("date") LocalDate date, @Param("time") LocalTime time, @Param("venueId") Long venueId, @Param("eventId") Long eventId);
+
     // Pageable methods
 
-    @Query("select event from Event event where event.date= :date order by time asc")
+    @Query("select event from Event event where event.date= :date order by event.time asc")
     Page<Event> findByDate(@Param("date") LocalDate date, Pageable pageable);
 
     @Query("select event from Event event join event.artists artists where artists.id= :artistId order by event.date asc")

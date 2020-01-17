@@ -15,4 +15,7 @@ public interface VenueService {
     Page<Venue> getVenuePage(Integer page, Integer size);
     Page<Venue> getVenueByCity(String city, Integer page, Integer size);
 
+    boolean validateVenueByName(Venue venue);
+    boolean validateVenueByNameAndId(Venue venue);
+
 }

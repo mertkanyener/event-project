@@ -66,7 +66,8 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public boolean validateArtistNameWithId(Artist artist) {
-        if (artistRepository.findArtistByNameAndId(artist.getId(), artist.getName()) != null) {
+        Artist dbArtist = artistRepository.findArtistByName(artist.getName());
+        if (dbArtist != null && dbArtist.getId() != artist.getId()) {
             return false;
         } else {
             return true;

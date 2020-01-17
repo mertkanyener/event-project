@@ -15,6 +15,11 @@ public interface VenueRepository extends JpaRepository<Venue, Long> {
     @Query("select venue from Venue venue order by name asc")
     Page<Venue> getVenuePage(Pageable pageable);
 
-    @Query("select venue from Venue venue where venue.city= :city order by name asc")
+    @Query("select venue from Venue venue where venue.city= :city order by venue.name asc")
     Page<Venue> getVenueByCity(@Param("city") String city, Pageable pageable);
+
+    Venue findVenueByName(String name);
+
+    @Query("select venue from Venue venue where venue.name= :name and venue.id <> :id")
+    Venue validateVenueByNameAndId(@Param("name") String name, @Param("id") Long id);
 }

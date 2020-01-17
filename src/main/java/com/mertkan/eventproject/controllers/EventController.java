@@ -1,8 +1,10 @@
 package com.mertkan.eventproject.controllers;
 
 import com.mertkan.eventproject.model.Event;
+import com.mertkan.eventproject.payload.AdminOpsResponse;
 import com.mertkan.eventproject.service.EventService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -111,15 +113,34 @@ public class EventController {
     // Admin methods
 
     @PostMapping(path = "/admin/events")
-    public Long saveEvent(@RequestBody Event event) {
-        return eventService.save(event);
+    public ResponseEntity<AdminOpsResponse> saveEvent(@RequestBody Event event) {
+        if (!eventService.validateEventArtist(event)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(-1l, "The artists of the event have another event at the same date and time!"));
+        } else if (!eventService.validateEventVenue(event)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(-1l, "There is another event in the venue at the same date and time!"));
+        } else {
+            Long id = eventService.save(event);
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Event saved successfully!"));
+        }
+
     }
 
 
     @PutMapping(path = "/admin/events/{id}")
-    public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+    public ResponseEntity<AdminOpsResponse> updateEvent(@PathVariable Long id, @RequestBody Event event) {
         event.setId(id);
-        eventService.update(event);
+        if (!eventService.validateEventArtistWithId(event)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(id, "The artists of the event have another event at the same date and time!"));
+        } else if (!eventService.validateEventVenueWithId(event)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(id, "There is another event in the venue at the same date and time!"));
+        } else {
+            eventService.update(event);
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Event saved successfully!"));
+        }
     }
 
     @DeleteMapping(path = "/admin/events/{id}")

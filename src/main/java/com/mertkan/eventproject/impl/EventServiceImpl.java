@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -168,14 +169,39 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean validateEventArtist(Event event) {
-        return false;
+        Collection<Long> artistIds = new ArrayList<>();
+        event.getArtists().forEach(artist -> artistIds.add(artist.getId()));
+        if (eventRepository.validateEventArtist(event.getDate(), event.getTime(), artistIds ) != null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean validateEventVenue(Event event) {
-        return false;
+        if (eventRepository.validateEventVenue(event.getDate(), event.getTime(), event.getVenue_Id()) != null) {
+            return false;
+        }
+        return true;
     }
 
+    @Override
+    public boolean validateEventArtistWithId(Event event) {
+        Collection<Long> artistIds = new ArrayList<>();
+        event.getArtists().forEach(artist -> artistIds.add(artist.getId()));
+        if (eventRepository.validateEventArtistWithId(event.getDate(), event.getTime(), artistIds, event.getId()) != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean validateEventVenueWithId(Event event) {
+        if (eventRepository.validateEventVenueWithId(event.getDate(), event.getTime(), event.getVenue_Id(), event.getId()) != null) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public List<Event> findSavedEvents(Long userId) { return eventRepository.findSavedEvents(userId); }

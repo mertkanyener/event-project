@@ -1,10 +1,9 @@
 package com.mertkan.eventproject.controllers;
 
 import com.mertkan.eventproject.model.Artist;
-import com.mertkan.eventproject.payload.ArtistServiceResponse;
+import com.mertkan.eventproject.payload.AdminOpsResponse;
 import com.mertkan.eventproject.service.ArtistService;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,26 +42,26 @@ public class ArtistController {
     //Admin methods
 
     @PostMapping(path = "/admin/artists")
-    public ResponseEntity<ArtistServiceResponse> saveArtist(@RequestBody Artist artist) {
+    public ResponseEntity<AdminOpsResponse> saveArtist(@RequestBody Artist artist) {
         if (!artistService.validateArtistName(artist.getName())) {
             return ResponseEntity.badRequest()
-                    .body(new ArtistServiceResponse(-1l, "There is another artist with the same name!"));
+                    .body(new AdminOpsResponse(-1l, "There is another artist with the same name!"));
         } else {
             Long id = artistService.save(artist);
-            return ResponseEntity.ok(new ArtistServiceResponse(id, "Artist: " + artist.getName() + " saved successfully!" ));
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Artist: " + artist.getName() + " saved successfully!" ));
         }
 
     }
 
     @PutMapping(path = "/admin/artists/{id}")
-    public ResponseEntity<ArtistServiceResponse> updateArtist(@PathVariable Long id, @RequestBody Artist artist) {
+    public ResponseEntity<AdminOpsResponse> updateArtist(@PathVariable Long id, @RequestBody Artist artist) {
         artist.setId(id);
         if (!artistService.validateArtistNameWithId(artist)) {
             return ResponseEntity.badRequest()
-                    .body(new ArtistServiceResponse(id, "There is another artist with the same name!"));
+                    .body(new AdminOpsResponse(id, "There is another artist with the same name!"));
         } else {
             artistService.update(artist);
-            return ResponseEntity.ok(new ArtistServiceResponse(id, "Artist: " + artist.getName() + " updated successfully!"));
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Artist: " + artist.getName() + " updated successfully!"));
         }
 
     }

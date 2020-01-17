@@ -38,4 +38,6 @@ public interface EventService {
 
     boolean validateEventArtist(Event event);
     boolean validateEventVenue(Event event);
+    boolean validateEventArtistWithId(Event event);
+    boolean validateEventVenueWithId(Event event);
 }

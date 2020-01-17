@@ -1,21 +1,21 @@
 package com.mertkan.eventproject.payload;
 
-public class ArtistServiceResponse {
+public class AdminOpsResponse {
 
-    private Long artistId;
+    private Long objectId;
     private String responseBody;
 
-    public ArtistServiceResponse(Long artistId, String responseBody) {
-        this.artistId = artistId;
+    public AdminOpsResponse(Long objectId, String responseBody) {
+        this.objectId = objectId;
         this.responseBody = responseBody;
     }
 
-    public Long getArtistId() {
-        return artistId;
+    public Long getObjectId() {
+        return objectId;
     }
 
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
     }
 
     public String getResponseBody() {

@@ -49,6 +49,22 @@ public class VenueServiceImpl implements VenueService {
     }
 
     @Override
+    public boolean validateVenueByName(Venue venue) {
+        if (venueRepository.findVenueByName(venue.getName()) != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean validateVenueByNameAndId(Venue venue) {
+        if (venueRepository.validateVenueByNameAndId(venue.getName(), venue.getId()) != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public Page<Venue> getVenuePage(Integer page, Integer size) {
         return venueRepository.getVenuePage(PageRequest.of(page, size));
     }

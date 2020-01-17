@@ -1,8 +1,10 @@
 package com.mertkan.eventproject.controllers;
 
 import com.mertkan.eventproject.model.Venue;
+import com.mertkan.eventproject.payload.AdminOpsResponse;
 import com.mertkan.eventproject.service.VenueService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,14 +43,26 @@ public class VenueController {
     // Admin methods
 
     @PostMapping(path = "/admin/venues")
-    public Long saveVenue(@RequestBody Venue venue) {
-        return venueService.save(venue);
+    public ResponseEntity<AdminOpsResponse> saveVenue(@RequestBody Venue venue) {
+        if (!venueService.validateVenueByName(venue)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(-1l, "There is another venue with the same name!"));
+        } else {
+            Long id = venueService.save(venue);
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Venue saved successfully!"));
+        }
     }
 
     @PutMapping(path = "/admin/venues/{id}")
-    public void updateVenue(@PathVariable Long id, @RequestBody Venue venue) {
+    public ResponseEntity<AdminOpsResponse> updateVenue(@PathVariable Long id, @RequestBody Venue venue) {
         venue.setId(id);
-        venueService.update(venue);
+        if (!venueService.validateVenueByNameAndId(venue)) {
+            return ResponseEntity.badRequest()
+                    .body(new AdminOpsResponse(id, "There is another venue with the same name!"));
+        } else {
+            venueService.update(venue);
+            return ResponseEntity.ok(new AdminOpsResponse(id, "Venue updated successfully!"));
+        }
     }
 
     @DeleteMapping(path = "/admin/venues/{id}")
