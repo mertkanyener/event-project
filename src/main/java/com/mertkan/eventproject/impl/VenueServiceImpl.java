@@ -3,6 +3,8 @@ package com.mertkan.eventproject.impl;
 import com.mertkan.eventproject.model.Venue;
 import com.mertkan.eventproject.repository.VenueRepository;
 import com.mertkan.eventproject.service.VenueService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,9 +23,11 @@ public class VenueServiceImpl implements VenueService {
 
     @Override
     public Long save(Venue venue) {
+        Logger logger = LoggerFactory.getLogger(VenueServiceImpl.class);
         IDGenerator idGenerator = new IDGenerator();
         Long id = idGenerator.generate();
         venue.setId(id);
+        logger.info("Venue ID: " + id.toString());
         venueRepository.save(venue);
         return id;
     }

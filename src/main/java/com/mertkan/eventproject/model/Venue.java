@@ -8,7 +8,6 @@ import java.util.List;
 public class Venue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
     @Column(name = "name", unique = true, nullable = false)
