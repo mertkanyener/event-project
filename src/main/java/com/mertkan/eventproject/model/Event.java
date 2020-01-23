@@ -14,7 +14,7 @@ public class Event {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "date", nullable = false)
+    @Column(name = "start_date", nullable = false)
     private LocalDate date;
     @Column(name = "end_date")
     private LocalDate endDate;
