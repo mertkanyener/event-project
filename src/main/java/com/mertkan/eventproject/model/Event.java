@@ -15,7 +15,7 @@ public class Event {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "start_date", nullable = false)
-    private LocalDate date;
+    private LocalDate startDate;
     @Column(name = "end_date")
     private LocalDate endDate;
     @Column(name = "time", nullable = false)
@@ -65,7 +65,7 @@ public class Event {
     }
 
     public LocalDate getDate() {
-        return date;
+        return startDate;
     }
 
     public LocalTime getTime() {
@@ -77,7 +77,7 @@ public class Event {
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.startDate = date;
     }
 
     public Venue getVenue() {
