@@ -64,7 +64,7 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDate getDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
@@ -76,7 +76,7 @@ public class Event {
         this.time = time;
     }
 
-    public void setDate(LocalDate date) {
+    public void setStartDate(LocalDate date) {
         this.startDate = date;
     }
 
