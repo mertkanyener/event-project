@@ -171,7 +171,8 @@ public class EventServiceImpl implements EventService {
     public boolean validateEventArtist(Event event) {
         Collection<Long> artistIds = new ArrayList<>();
         event.getArtists().forEach(artist -> artistIds.add(artist.getId()));
-        if (eventRepository.validateEventArtist(event.getStartDate(), event.getTime(), artistIds ) != null) {
+        List<Event> events = eventRepository.validateEventArtist(event.getStartDate(), event.getTime(), artistIds );
+        if (!events.isEmpty()) {
             return false;
         }
         return true;
@@ -179,6 +180,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean validateEventVenue(Event event) {
+
         if (eventRepository.validateEventVenue(event.getStartDate(), event.getTime(), event.getVenue_Id()) != null) {
             return false;
         }
