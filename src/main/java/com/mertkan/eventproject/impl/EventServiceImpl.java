@@ -171,7 +171,7 @@ public class EventServiceImpl implements EventService {
     public boolean validateEventArtist(Event event) {
         Collection<Long> artistIds = new ArrayList<>();
         event.getArtists().forEach(artist -> artistIds.add(artist.getId()));
-        if (eventRepository.validateEventArtist(event.getDate(), event.getTime(), artistIds ) != null) {
+        if (eventRepository.validateEventArtist(event.getStartDate(), event.getTime(), artistIds ) != null) {
             return false;
         }
         return true;
@@ -179,7 +179,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean validateEventVenue(Event event) {
-        if (eventRepository.validateEventVenue(event.getDate(), event.getTime(), event.getVenue_Id()) != null) {
+        if (eventRepository.validateEventVenue(event.getStartDate(), event.getTime(), event.getVenue_Id()) != null) {
             return false;
         }
         return true;
@@ -189,7 +189,7 @@ public class EventServiceImpl implements EventService {
     public boolean validateEventArtistWithId(Event event) {
         Collection<Long> artistIds = new ArrayList<>();
         event.getArtists().forEach(artist -> artistIds.add(artist.getId()));
-        if (eventRepository.validateEventArtistWithId(event.getDate(), event.getTime(), artistIds, event.getId()) != null) {
+        if (eventRepository.validateEventArtistWithId(event.getStartDate(), event.getTime(), artistIds, event.getId()) != null) {
             return false;
         }
         return true;
@@ -197,7 +197,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public boolean validateEventVenueWithId(Event event) {
-        if (eventRepository.validateEventVenueWithId(event.getDate(), event.getTime(), event.getVenue_Id(), event.getId()) != null) {
+        if (eventRepository.validateEventVenueWithId(event.getStartDate(), event.getTime(), event.getVenue_Id(), event.getId()) != null) {
             return false;
         }
         return true;
