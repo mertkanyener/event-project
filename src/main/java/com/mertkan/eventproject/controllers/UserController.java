@@ -40,7 +40,7 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) { userService.delete(id); }
 
     @GetMapping(path = "/user/{userId}/event/{eventId}/friends")
-    public List<User> getFriendsByAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { return userService.findFriendsByAttendingEvents(eventId, userId); }
+    public List<Friend> getFriendsByAttendingEvent(@PathVariable Long userId, @PathVariable Long eventId) { return userService.findFriendsByAttendingEvents(eventId, userId); }
 
     @GetMapping(path = "/events/{eventId}/saved/users")
     public List<User> getUsersBySavedEvent(@PathVariable Long eventId) { return userService.findUserBySavedEvents(eventId); }

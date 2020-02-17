@@ -108,7 +108,10 @@ public class UserServiceImpl implements UserService {
     public List<Event> findAttendingEvents(Long userId) { return userRepository.findAttendingEvents(userId); }
 
     @Override
-    public List<User> findFriendsByAttendingEvents(Long eventId, Long userId) { return userRepository.findFriendsByAttendingEvents(eventId, userId); }
+    public List<Friend> findFriendsByAttendingEvents(Long eventId, Long userId) {
+        return usersToFriends(userRepository.findFriendsByAttendingEvents(eventId, userId));
+
+    }
 
     @Override
     public User findById(Long id) { return this.userRepository.findUserById(id); }

@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/events/**", "/artists/**",
                             "/venues/**", "/facebook/**", "/validation/**", "/register",
-                            "/oauth/token**", "/login**").permitAll()
+                            "/oauth/token**", "/login**", "/login/**").permitAll()
 
                 .and().csrf().disable()
                 .authorizeRequests()

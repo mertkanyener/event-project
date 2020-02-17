@@ -29,7 +29,7 @@ public interface UserService {
     List<User> findAll();
     List<User> findByRole(Long roleId);
     List<User> findUserBySavedEvents(Long eventId);
-    List<User> findFriendsByAttendingEvents(Long eventId, Long userId);
+    List<Friend> findFriendsByAttendingEvents(Long eventId, Long userId);
     List<Friend> findFriendsByUserId(Long userId);
     List<Friend> findFriendsByName(String firstName, String lastName, Long userId);
     List<Event> findAttendingEvents(Long userId);
